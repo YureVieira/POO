@@ -1,6 +1,6 @@
-import java.util.Scanner;	//Para classe que le a entrada do teclado.
+import java.util.Scanner;
 
-public class Aula1 {
+public class myClass {
 	public static void main(String args[])
 	{
 		int a = 0;
@@ -21,7 +21,7 @@ public class Aula1 {
 		
 		//System.out.println("O resultado: "+c);
 		System.out.println("A soma: "+a+"+" +b + " = "+soma);
-		System.out.println("A subtraÃ§Ã£o: "+a+"-" +b + " = "+sub);
+		System.out.println("A subtração: "+a+"-" +b + " = "+sub);
 		System.out.println("O produto: "+a+"*" +b + " = "+mul);
 		System.out.println("O quociente: "+a+"/" +b + " = "+div);
 	}
