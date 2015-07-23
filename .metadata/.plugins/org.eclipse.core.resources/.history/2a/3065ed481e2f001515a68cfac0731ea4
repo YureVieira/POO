@@ -1,0 +1,13 @@
+
+public class DVD {
+	//Atributos
+	String marca;
+	String modelo;
+	float peso;
+	boolean Slin;
+	float preço;
+	
+	//Metodos
+	public DVD() {
+	}
+}

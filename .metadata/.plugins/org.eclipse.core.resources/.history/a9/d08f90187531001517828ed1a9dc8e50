@@ -1,0 +1,8 @@
+
+public class Empregado {
+
+	public Empregado() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
