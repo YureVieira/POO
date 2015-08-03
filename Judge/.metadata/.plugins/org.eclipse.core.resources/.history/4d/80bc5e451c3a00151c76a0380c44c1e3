@@ -1,0 +1,27 @@
+/**
+ * @author Yure
+ *
+* A fórmula para calcular a área de uma circunferência é: area = pi . raio2.
+*  Considerando que para este problema que pi = 3.14159:
+* Efetue o cálculo da área, elevando o valor de Raio ao quadrado e multiplicando por pi.
+ */
+
+import java.util.*;
+//import java.lang.*;
+public class Basic2 {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		double pi = 3.14159;
+		Scanner sc = new Scanner(System.in);
+		
+		double raio = sc.nextDouble();		
+		double area = pi*Math.pow(raio,2);
+		
+		System.out.println("A="+area);
+
+	}
+
+}
