@@ -1,0 +1,49 @@
+classes:
+
+zoo{
+	horario;
+	array:rejeitados;
+}
+
+animal{
+	comida;
+}
+mamifero::animal{}
+ave:animal{}
+reptil:animal{}
+anfibio:animal{}
+invertebrado:animal{}
+
+associaçao visita:pessoa,zoo{
+	visitantes;
+	dia;
+	hora de chageda;
+	ingresso;
+}
+
+ingresso{
+	valor
+}
+
+full:ingresso{}
+half:ingresso{}
+combo:ingresso{}
+
+pessoa{
+	nome;
+	cpf;
+	email;
+}
+
+visitante:pessoa{
+	objetivo;
+	idade;
+	endereço;
+}
+
+funcionario:pessoa{
+	telefone;
+	...
+}
+
+administrador:funcionario{}
