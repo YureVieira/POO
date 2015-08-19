@@ -1,0 +1,26 @@
+import java.util.*;
+public class Teste {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Ingresso> ingressos = new ArrayList<Ingresso>();
+		ArrayList<Assistente> Assistentes = new ArrayList<Assistente>();
+		
+		Normal normal_1 = new Normal(200);
+		Normal normal_2 = new Normal(200);
+		VIP vip_1= new VIP(50);
+		VIP vip_2= new VIP(50);
+		ingressos.add(normal_1);
+		ingressos.add(normal_2);
+		ingressos.add(normal_2);
+		ingressos.add(vip_1);
+		ingressos.add(vip_2);
+		
+		Tecnico tecnico_1 = new Tecnico();
+		Tecnico tecnico_2 = new Tecnico();
+		Administrativo admin_1 = new Administrativo();
+		Administrativo admin_2 = new Administrativo();
+		
+	}
+
+}

@@ -1,0 +1,8 @@
+
+public class Administrativo extends Assistente {
+
+	public Administrativo() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,8 @@
+
+public class Administrativo extends Assistente {
+	String turno;
+	public Administrativo() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

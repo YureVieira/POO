@@ -1,0 +1,13 @@
+import java.util.*;
+public class Teste {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Ingresso> ingressos = new ArrayList<Ingresso>();
+		ArrayList<Assistente> Assistentes = new ArrayList<Assistente>();
+		Normal normal_1 = new Normal(200);
+		Normal normal_2 = new Normal(200);
+		
+	}
+
+}

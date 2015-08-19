@@ -1,0 +1,12 @@
+
+public class Tecnico extends Assistente {
+
+	float bonus_salarial;
+
+	public Tecnico(String n, long m) {
+		super(n, m);
+		// TODO Auto-generated constructor stub
+	}
+	
+
+}

@@ -1,0 +1,9 @@
+
+public class Tecnico extends Assistente {
+
+	float bonus_salarial;
+	public Tecnico() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

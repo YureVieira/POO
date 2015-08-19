@@ -1,0 +1,11 @@
+
+public class Ingresso {
+	float valor_reais;
+	public Ingresso() {
+		// TODO Auto-generated constructor stub
+	}
+	void imprimeValor(){
+		System.out.println("Valor R$"+valor_reais);
+	}
+
+}

@@ -1,0 +1,12 @@
+
+public class VIP extends Ingresso {
+	float adicional;
+	public VIP() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	void imprimeValor(){
+		System.out.println("Valor do ingresso R$"+valor_reais+adicional);
+		
+	}
+}

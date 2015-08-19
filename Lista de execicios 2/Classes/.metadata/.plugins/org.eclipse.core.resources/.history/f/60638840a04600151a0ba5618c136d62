@@ -1,0 +1,8 @@
+
+public class VIP extends Ingresso {
+
+	public VIP() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
