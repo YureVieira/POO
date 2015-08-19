@@ -1,0 +1,11 @@
+
+public class Assistente extends Funcionario {
+	long int matricula;
+	public Assistente() {
+		// TODO Auto-generated constructor stub
+	}
+	void exibeDados(){
+		System.out.println("O funcionario de nome "+nome+" recebe salario de R$"+salario);
+	}
+
+}
