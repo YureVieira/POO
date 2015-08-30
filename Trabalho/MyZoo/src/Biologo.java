@@ -3,10 +3,10 @@ import java.util.Date;
 
 public class Biologo extends Funcionario{
 	//Construtor
-	public Biologo(String nome,String sobrenome, int cpf, String email, Date nascimento,
+	public Biologo(String nome, int cpf, String email, Date nascimento,
 			double salario, int carga_horaria, long telefone, Time horaDeChegar,
 			Time horaDeSair) {
-		super(nome,sobrenome, cpf, email, nascimento, salario, carga_horaria, telefone,
+		super(nome, cpf, email, nascimento, salario, carga_horaria, telefone,
 				horaDeChegar, horaDeSair);
 		// TODO Auto-generated constructor stub
 	}

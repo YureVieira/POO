@@ -10,10 +10,13 @@ public abstract class Funcionario extends Pessoa{
 	Time horaDeSair;
 
 	//Construtor
-	public Funcionario(String nome,String sobrenome, int cpf, String email, Date nascimento,
+	//Cada funcionário tem: nome, cpf, data de nascimento, email, telefone, cargo ou função, salário bruto,
+	//salário líquido, banco, conta corrente e agência bancaria, dia e horário de trabalho.
+	
+	public Funcionario(String nome,int cpf, String email, Date nascimento,
 			double salario, int carga_horaria, long telefone, Time horaDeChegar,
 			Time horaDeSair) {
-		super(nome,sobrenome, cpf, email, nascimento);
+		super(nome, cpf, email, nascimento);
 		this.salario = salario;
 		this.carga_horaria = carga_horaria;
 		this.telefone = telefone;
