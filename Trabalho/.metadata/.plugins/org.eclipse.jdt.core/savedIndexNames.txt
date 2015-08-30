@@ -1,0 +1,2 @@
+INDEX VERSION 1.127+F:\Trabalho_git\POO\Trabalho\.metadata\.plugins\org.eclipse.jdt.core
+580499974.index
