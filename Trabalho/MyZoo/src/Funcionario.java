@@ -13,7 +13,7 @@ public abstract class Funcionario extends Pessoa{
 	//Cada funcionário tem: nome, cpf, data de nascimento, email, telefone, cargo ou função, salário bruto,
 	//salário líquido, banco, conta corrente e agência bancaria, dia e horário de trabalho.
 	
-	public Funcionario(String nome,int cpf, String email, Date nascimento,
+	public Funcionario(String nome,long cpf, String email, Date nascimento,
 			double salario, int carga_horaria, long telefone, Time horaDeChegar,
 			Time horaDeSair) {
 		super(nome, cpf, email, nascimento);

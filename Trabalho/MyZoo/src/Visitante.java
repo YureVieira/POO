@@ -6,7 +6,7 @@ public class Visitante extends Pessoa {
 	static int projetoDePreservacao = 2;
 	static int educacaoAmbiental = 3;*/
 	int objetivo;
-	public Visitante(String nome, int cpf, String email, Date nascimento) {
+	public Visitante(String nome, long cpf, String email, Date nascimento) {
 		super(nome, cpf, email, nascimento);
 		// TODO Auto-generated constructor stub
 	}

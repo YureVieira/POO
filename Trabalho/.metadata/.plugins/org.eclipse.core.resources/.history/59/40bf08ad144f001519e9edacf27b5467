@@ -1,0 +1,13 @@
+import java.util.ArrayList;
+
+public class Ingresso_dia {
+	double valor = 100;
+	int n_pessoas = 1;
+	ArrayList<Visitante> visit;
+	public Ingresso_dia(ArrayList<Visitante> list){
+		Scanner sc = new Scanner(System.in);
+		if(list.size()==3){
+			System.out.println("Deseja fazer um combo?");
+		}
+	}
+}

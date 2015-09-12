@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class Setores {
+	//Setores
+	ArrayList<Mamifero> setorM = new ArrayList<Mamifero>();;
+	ArrayList<Reptil> setorR = new ArrayList<Reptil>();;
+	ArrayList<Ave> setorAv = new ArrayList<Ave>();
+	ArrayList<Anfibio> setorAn;
+	ArrayList<Invertebrado> setorI;
+	
+	void initSetores(){
+		setorM = new ArrayList<Mamifero>();
+		setorAv = new ArrayList<Ave>();
+		setorR = new ArrayList<Reptil>();
+		setorAn = new ArrayList<Anfibio>();
+		setorI = new ArrayList<Invertebrado>();
+		//como lincar um tratador ao setor? 
+	}
+}

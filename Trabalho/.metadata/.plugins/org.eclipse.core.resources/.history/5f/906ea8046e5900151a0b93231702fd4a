@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class MyZoo {
+	int hora_de_fechar = 16;
+	int hora_de_abrir = 8;
+	int dias_uteis;
+	Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		// Tratador t1 = new Tratador("Yure
+		// Vieira",05194613364,"yurevsa@hotmail.com");
+		menu1();
+
+	}
+
+	public static int menu1(){
+		int escolha;
+		System.out.println("Bem vindo ao zoologico");
+		System.out.println("1 - Administrador");
+		System.out.println("2 - Visitante");
+		System.out.println("3 - Funcionario");
+		for(;;){
+		try{
+			escolha = sc.nextInt();
+			break;
+		}
+		catch(NumberFormatException e){
+			System.out.println("Deu ruim :(");
+		}
+		}
+		
+		return escolha;
+		
+	}
+
+}

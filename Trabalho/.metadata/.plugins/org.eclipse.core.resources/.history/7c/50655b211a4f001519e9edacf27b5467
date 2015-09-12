@@ -1,0 +1,11 @@
+
+public class MyZoo {
+	int hora_de_fechar;
+	int hora_de_abrir;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+
+	}
+
+}

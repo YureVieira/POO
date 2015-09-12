@@ -1,0 +1,12 @@
+
+public class Ingresso_dia {
+	static double valor = 100;
+	static int n_pessoas = 1;
+	public Ingresso_dia(int n){
+		if(n>3)
+		{
+			n_pessoas = n;
+			System.out.println("Sugestão: combo");
+		}
+	}
+}

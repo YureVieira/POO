@@ -1,0 +1,11 @@
+
+public class Ingresso_dia {
+	static double valor = 100;
+	static int n_pessoas = 1;
+	public Ingresso_dia(int combo){
+		if(combo)
+		{
+			n_pessoas = 3;
+		}
+	}
+}

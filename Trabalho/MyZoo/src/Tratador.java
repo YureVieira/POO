@@ -1,10 +1,11 @@
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Tratador extends Funcionario {
+	ArrayList<Setores> setores;
 	
-	
-	public Tratador(String nome,int cpf, String email, Date nascimento,
+	public Tratador(String nome,long cpf, String email, Date nascimento,
 			double salario, int carga_horaria, long telefone, Time horaDeChegar,
 			Time horaDeSair) {
 		super(nome, cpf, email, nascimento, salario, carga_horaria, telefone,

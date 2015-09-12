@@ -1,0 +1,11 @@
+
+public class Ingresso_dia {
+	double valor = 100;
+	int n_pessoas = 1;
+	ArrayList<Visitante>
+	public Ingresso_dia(int n){
+		if(n>3){
+			System.out.println("Sugestão: combo");
+		}
+	}
+}

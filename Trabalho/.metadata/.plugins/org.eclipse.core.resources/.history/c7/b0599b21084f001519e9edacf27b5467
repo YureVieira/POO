@@ -1,0 +1,6 @@
+import java.util.*;
+public class Visita {
+	ArrayList<Visitante> visitantes;
+	Date dia;
+
+}

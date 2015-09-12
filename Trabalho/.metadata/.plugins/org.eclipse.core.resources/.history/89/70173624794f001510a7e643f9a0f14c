@@ -1,0 +1,10 @@
+import java.util.*;
+
+public class Setores {
+	//Setores
+	ArrayList<Mamifero> setorM;
+	ArrayList<Reptil> setorR;
+	ArrayList<Ave> setorAv;
+	ArrayList<Anfibio> setorAn;
+	ArrayList<Invertebrado> setorI;
+}
