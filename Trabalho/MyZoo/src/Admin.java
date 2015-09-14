@@ -2,19 +2,10 @@ import java.sql.Time;
 import java.util.Date;
 
 
-public class Admin extends Funcionario {
+public class Admin {
 
-	public Admin(String nome, long cpf, String email, Date nascimento,
-			double salario, int carga_horaria, long telefone, Time horaDeChegar,
-			Time horaDeSair) {
-		super(nome, cpf, email, nascimento, salario, carga_horaria, telefone,
-				horaDeChegar, horaDeSair);
+	public Admin() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public int Recebe_salario() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }
