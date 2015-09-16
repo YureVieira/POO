@@ -1,4 +1,4 @@
 
-public class Invertebrado {
+public class Invertebrado extends Animal{
 
 }
