@@ -1,4 +1,4 @@
 
-public class Anfibio extends Animal {
+public class Anfibio extends Animal{
 
 }

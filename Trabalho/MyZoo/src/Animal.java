@@ -1,4 +1,3 @@
-
 public abstract class  Animal {
 	String nome;
 	String tipo_alimentacao;
