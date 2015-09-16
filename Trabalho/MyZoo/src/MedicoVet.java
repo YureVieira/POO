@@ -14,5 +14,6 @@ public class MedicoVet extends Funcionario {
 		// TODO Auto-generated method stub
 		return 8000;
 	}
+	public void acumula_cargo(){}
 
 }

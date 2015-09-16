@@ -1,18 +1,25 @@
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.Time;
 import java.util.*;
+
+import javax.imageio.ImageIO;
 
 public class MyZoo {
 	int hora_de_fechar = 16;
 	int hora_de_abrir = 8;
 	int dias_uteis;
 	static ArrayList<Funcionario> quadroF;
+	static ArrayList<Funcionario> usuarioF;
 	static Scanner sc = new Scanner(System.in);
+	boolean acesso_funcionario = false;
+	
 
 	public static void main(String[] args) {
 		
 		//Cria o quadro de funcionarios altomaticamente
 		criar_funcionarios();
-
+		
 		int escolha_func;
 		for (boolean flag_loop = true; flag_loop;) {
 			//Escolha do tipo de pessoa
@@ -20,7 +27,13 @@ public class MyZoo {
 			
 			switch (escolha1) {
 			case 1:
-				menu_login_funcionario(menuFunc());
+				int tipo_func = menuFunc();
+				int index = menu_login_funcionario(tipo_func);
+				System.out.println("=============Editar animais=============");
+				System.out.println("1 -> Adicionar animal");
+				System.out.println("2 -> Remover animal");
+				System.out.println("3 -> Editar animal");
+				System.out.println("4 -> Ver animal");
 				flag_loop = false;
 				break;
 			case 2:
@@ -95,10 +108,29 @@ public class MyZoo {
 	}
 
 	public static int view_animal() {
+		System.out.println("Veja o animal");
 		return 0;
 	}
 
 	public static int add_animal() {
+		System.out.println("=========Escolha o tipo de animal=========");
+		System.out.println("1 -> Mamifero");
+		System.out.println("1 -> Ave");
+		System.out.println("1 -> Reptil");
+		System.out.println("1 -> Anfibio");
+		System.out.println("1 -> Invertebrado");
+		int escolha;
+		try {
+			escolha = sc.nextInt();
+			switch(escolha){
+			case 1:
+				break;
+			}
+		} catch (InputMismatchException e) {
+			System.out.println("Entrada Invalida 'm2'");
+			return -1;
+		}
+		
 		return 0;
 	}
 
@@ -114,7 +146,7 @@ public class MyZoo {
 		int i = 0,aux_func = 0;
 		for (Funcionario p : quadroF) {
 			if (p.login.equals(senha) && p.cpf.equals(cpf)){
-				
+
 				if(p instanceof MedicoVet)	aux_func = 1;
 				if(p instanceof Biologo)	aux_func = 2;
 				if(p instanceof Tratador)	aux_func = 3;
