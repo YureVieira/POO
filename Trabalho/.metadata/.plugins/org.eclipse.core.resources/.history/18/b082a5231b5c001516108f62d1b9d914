@@ -1,0 +1,144 @@
+import java.sql.Time;
+import java.util.*;
+
+public class MyZoo {
+	int hora_de_fechar = 16;
+	int hora_de_abrir = 8;
+	int dias_uteis;
+	static ArrayList<Funcionario> quadroF;
+	static ArrayList<Funcionario> usuarioF;
+	static Scanner sc = new Scanner(System.in);
+	boolean acesso_funcionario = false;
+	
+
+	public static void main(String[] args) {
+		
+		//Cria o quadro de funcionarios altomaticamente
+		criar_funcionarios();
+		
+		int escolha_func;
+		for (boolean flag_loop = true; flag_loop;) {
+			//Escolha do tipo de pessoa
+			int escolha1 = menu1();
+			
+			switch (escolha1) {
+			case 1:
+				int index = menu_login_funcionario(menuFunc());
+				usuario = new ()
+				flag_loop = false;
+				break;
+			case 2:
+				flag_loop = false;
+				break;
+			case 3:
+				flag_loop = false;
+				break;
+			case -1: // Continuar no loop ate a entrada ser valida
+				flag_loop = true;
+				break;
+			}
+		}
+	}
+
+	/********************************************************************************
+	 * Menus
+	 *******************************************************************************/
+	public static int menu1() {
+		int escolha;
+		System.out.println("Bem vindo ao zoologico");
+		System.out.println("1 - Funcionario");
+		System.out.println("2 - Novo visitante");
+		System.out.println("3 - Visitante");
+		try {
+			escolha = sc.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Entrada invalida 'm1'");
+			return -1;
+		}
+		return escolha;
+	}
+
+	public static int menuFunc() {
+		int escolha;
+		System.out.println("Funcionario de que tipo?");
+		System.out.println("1 - Veterinario");
+		System.out.println("2 - Biologo");
+		System.out.println("3 - Tratador");
+		System.out.println("4 - Zootecnico");
+		try {
+			escolha = sc.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Entrada Invalida 'm2'");
+			return -1;
+		}
+		return escolha;
+	}
+
+	public static int menu_login_funcionario(int func) {
+		String senha, cpf;
+		try {
+			System.out.println("Funcionario informe o cpf e senha");
+			System.out.print("CPF: ");
+			cpf = sc.next();
+			System.out.print("Senha: ");
+			senha = sc.next();
+			//Verifica se o funcionario existe.
+			int index = busca_funcionario(cpf, senha,func);
+			if(index < 0){	//Não existe
+				System.out.println("Usuario não cadastrado");
+				return -1;
+			}
+			else{
+				System.out.println("Usuario Encontrado");
+				return index;
+			}
+		} catch (InputMismatchException e) {
+			System.out.println("Entrada Invalida 'm2'");
+			return -1;
+		}
+	}
+
+	public static int view_animal() {
+		return 0;
+	}
+
+	public static int add_animal() {
+		return 0;
+	}
+
+	public static int remove_animal() {
+		return 0;
+	}
+
+	public static int change_animal() {
+		return 0;
+	}
+
+	public static int busca_funcionario(String cpf, String senha,int func) {
+		int i = 0,aux_func = 0;
+		for (Funcionario p : quadroF) {
+			if (p.login.equals(senha) && p.cpf.equals(cpf)){
+
+				if(p instanceof MedicoVet)	aux_func = 1;
+				if(p instanceof Biologo)	aux_func = 2;
+				if(p instanceof Tratador)	aux_func = 3;
+				if(p instanceof Zootecnico)	aux_func = 4;
+				if(aux_func == func)return i;
+			}
+			i++;
+		}
+		return -1; // Não encontrado
+	}
+
+	public static void criar_funcionarios() {
+		MedicoVet vet1 = new MedicoVet("Yure", "05104613364", "yurevsa@hotmail.com", 2000.0, 20, 998061837);
+		vet1.login = "guide123";
+		MedicoVet vet2 = new MedicoVet("Yunes", "07217814383", "yuneschpl@gmail.com", 12000.0, 20, 555555555);
+		vet2.login = "guide123";
+		
+		quadroF = new ArrayList<Funcionario>();
+		quadroF.add(vet1);
+		quadroF.add(vet2);
+	}
+
+}

@@ -1,0 +1,19 @@
+import java.sql.Time;
+import java.util.Date;
+
+
+public class MedicoVet extends Funcionario {
+
+	public MedicoVet(String nome,String cpf, String email, Date nascimento,
+			double salario, int carga_horaria, long telefone, Time horaDeChegar,
+			Time horaDeSair) {
+		super(nome,cpf, email, salario, carga_horaria);
+		// TODO Auto-generated constructor stub
+	}
+
+	public int Recebe_salario() {
+		// TODO Auto-generated method stub
+		return 8000;
+	}
+
+}

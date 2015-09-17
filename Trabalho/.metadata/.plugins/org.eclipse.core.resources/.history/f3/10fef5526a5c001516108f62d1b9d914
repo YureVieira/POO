@@ -1,0 +1,4 @@
+
+public enum Aves {
+	Accipitriformes, Anseriformes, Apodiformes, Caprimulgiformes
+}

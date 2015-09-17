@@ -1,0 +1,8 @@
+
+public abstract class  Animal {
+	String nome;
+	String 
+	void Comer(){
+		System.out.println("Comendo");		
+	}
+}

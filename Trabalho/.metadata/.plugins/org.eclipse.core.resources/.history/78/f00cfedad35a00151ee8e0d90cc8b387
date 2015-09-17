@@ -1,0 +1,16 @@
+import java.sql.Time;
+import java.util.Date;
+
+
+public class Admin {
+
+	public Admin() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int Recebe_salario() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
