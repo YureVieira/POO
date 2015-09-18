@@ -124,6 +124,47 @@ public class MyZoo {
 			escolha = sc.nextInt();
 			switch(escolha){
 			case 1:
+				System.out.print("Nome: ");
+				String nome = sc.next();
+				
+				for(;;){	//Loop infinito
+					String tipo_alimento;
+				System.out.print("Onivoro?(s/n)");
+				String resp = sc.next();
+				
+				if(resp == "n"){	
+					System.out.print("Herbivoro?(s/n) ");
+					resp = sc.next();
+					if(resp == "n"){
+						System.out.print("Carnivoro?(s/n) ");
+						resp = sc.next();
+						if(resp == "n")System.out.print("Se animal não come não?");
+						else if(resp == "s"){ 
+							tipo_alimento = "Carnivoro";
+							break;	//Sai do loop
+						}
+						else System.out.println("Resposta invalida");
+					}
+					else if(resp == "s"){
+						tipo_alimento = "Herbivoro";
+						break;	//Sai do loop
+					}
+					else System.out.println("Resposta invalida");
+				}
+				else if(resp == "s"){
+					tipo_alimento = "Onivoro";
+					break;	//Sai do loop
+				}
+				else System.out.println("Resposta invalida");
+				}
+				System.out.print("Idade em anos:");
+				int idade = sc.nextInt();
+				
+				System.out.println("Escreva um mensagem, uma descrição do animal:");
+				String msg = sc.next();
+				
+				Mamifero bixinho = new Mamifero(nome,tipo_alimento,idade,msg);
+				setorM.add(bixinho);
 				break;
 			}
 		} catch (InputMismatchException e) {
@@ -133,7 +174,7 @@ public class MyZoo {
 		
 		return 0;
 	}
-
+	
 	public static int remove_animal() {
 		return 0;
 	}
