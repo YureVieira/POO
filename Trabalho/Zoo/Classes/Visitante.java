@@ -1,4 +1,3 @@
-package zoo;
 import java.util.Date;
 
 public class Visitante extends Pessoa {

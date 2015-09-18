@@ -1,4 +1,3 @@
-package zoo;
 import java.util.ArrayList;
 
 public class Ingresso_meia {

@@ -1,11 +1,10 @@
-package zoo;
-import java.util.ArrayList;
+import java.util.*;
 
-public class Ingresso_meia {
-	double valor = 50;
+public class Ingresso_dia {
+	double valor = 100;
 	int n_pessoas = 1;
 	ArrayList<Visitante> visit;
-	public Ingresso_meia(){}
+	public Ingresso_dia(){}
 
 	public void fazerCombo(ArrayList<Visitante> list){
 		n_pessoas = list.size();

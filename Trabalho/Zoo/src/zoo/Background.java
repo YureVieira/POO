@@ -1,16 +1,28 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package zoo;
+
 import java.util.*;
 
+/**
+ *
+ * @author Micro
+ */
 
-public class DataBase {
+public class Background {
 	int hora_de_fechar = 16;
 	int hora_de_abrir = 8;
 	int dias_uteis;
-	static ArrayList<Funcionario> quadroF = new ArrayList<Funcionario>();
+	//static ArrayList<Funcionario> quadroF = new ArrayList<Funcionario>();
+        static ArrayList<Funcionario> quadroF = new ArrayList<Funcionario>();
 	static Scanner sc = new Scanner(System.in);
-	boolean acesso_funcionario = false;
+        static Funcionario usuarioF = new Funcionario();
+	static boolean acesso_funcionario = false;
 	
-        static Funcionario usuarioF;
+        public Background(){}
         /*
 	public static void main(String[] args) {
 		
@@ -80,7 +92,7 @@ public class DataBase {
 		return escolha;
 	}
 
-	public static int menu_login_funcionario(int func) {
+	public static int menu_login_funcionario(String func) {
 		String senha, cpf;
 		try {
 			System.out.println("Funcionario informe o cpf e senha");
@@ -143,37 +155,47 @@ public class DataBase {
 		int i = 0;
 		for (Funcionario p : quadroF) {
 			if (p.login.equals(senha) && p.cpf.equals(cpf)){
-				if(p instanceof MedicoVet && func == "Veterinario"  ||
-				p instanceof Biologo && func == "Biologo"           ||
-				p instanceof Tratador && func == "Tratador"         ||	
-                                p instanceof Zootecnico && func == "Zootecnico"){
+				if((p instanceof Veterinario && func.equals("Veterinario"))  ||
+				(p instanceof Biologo && func.equals("Biologo"))           ||
+				(p instanceof Tratador && func.equals("Tratador"))         ||	
+                                (p instanceof Zootecnico && func.equals( "Zootecnico"))){
+                                    System.out.println("Ok");
                                     return i;
                                 }
 			}
 			i++;
 		}
+                System.out.println("Falha");
 		return -1; // N�o encontrado
 	}
         
-        public static void  loginF(int index){
+        public static boolean  loginF(int index){
             try{
-                usuarioF = quadroF.;
+                usuarioF = (Funcionario)quadroF.get(index);
                 System.out.println("Logado");
+                return true;
             }
             catch(Exception e){
                 System.err.println("Erro ao logar");
+                return false;
             }
         }
         
 	public static void criar_funcionarios() {
-		MedicoVet vet1 = new MedicoVet("Yure", "05104613364", "yurevsa@hotmail.com", 2000.0, 20, 998061837);
+            try{
+		Veterinario vet1 = new Veterinario("Yure", "051.046.133-64", "yurevsa@hotmail.com", 2000.0, 20, 998061837);
 		vet1.login = "guide123";
-		MedicoVet vet2 = new MedicoVet("Yunes", "07217814383", "yuneschpl@gmail.com", 12000.0, 20, 555555555);
+		Veterinario vet2 = new Veterinario("Yunes", "072.178.143-83", "yuneschpl@gmail.com", 12000.0, 20, 555555555);
 		vet2.login = "guide123";
 		
 		//quadroF = new ArrayList<Funcionario>();
 		quadroF.add(vet1);
 		quadroF.add(vet2);
+            }
+            catch(Exception e){
+                System.err.println(e);
+            }
+                
 	}
 
 }

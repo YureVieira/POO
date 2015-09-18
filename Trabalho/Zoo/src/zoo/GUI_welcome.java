@@ -5,11 +5,14 @@
  */
 package zoo;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Micro
  */
 public class GUI_welcome extends javax.swing.JFrame {
+    //BackGround database;
     private Boolean login;
     public void setLogin(boolean e){
         login = e;
@@ -19,6 +22,7 @@ public class GUI_welcome extends javax.swing.JFrame {
      */
     public GUI_welcome() {
         initComponents();
+        Background.criar_funcionarios();
     }
 
     /**
@@ -63,7 +67,7 @@ public class GUI_welcome extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(76, 76, 76)
+                .addGap(82, 82, 82)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -81,9 +85,20 @@ public class GUI_welcome extends javax.swing.JFrame {
         System.out.println(win1.getCpf());
         System.out.println(win1.getPassword());
         System.out.println(win1.getFnc());
+        
         //Faz a busca e loga se usuario existir
-        int index = DataBase.busca_funcionario(win1.getCpf(),win1.getPassword(),win1.getFnc()) ;
-        if(index > 0)DataBase.loginF(index);
+        int index = Background.busca_funcionario(win1.getCpf(),win1.getPassword(),win1.getFnc()) ;
+        if(index >= 0)
+        {
+            Background.loginF(index);
+            JOptionPane.showMessageDialog(null,"Login efetuado com sucesso");  
+        }
+        else{ 
+            JOptionPane.showMessageDialog(null,"Usuario não existe");
+        }           
+        //Segundo form
+        GUI_Work winW = new GUI_Work();
+        winW.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

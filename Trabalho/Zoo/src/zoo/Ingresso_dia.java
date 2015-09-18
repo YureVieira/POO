@@ -1,3 +1,4 @@
+package zoo;
 import java.util.*;
 
 public class Ingresso_dia {

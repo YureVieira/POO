@@ -1,4 +1,3 @@
-package zoo;
 public class Ave extends Animal {
 	
 	public Ave(String nome, String tipo_alimentacao, int idade,String msg) {

@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package zoo;
+import java.sql.Time;
+import java.util.Date;
 
-/**
- *
- * @author Micro
- */
 public class Funcionario extends Pessoa{
 	//Atributos
 	double salario;
 	int carga_horaria;
 	long telefone;
-//	Time horaDeChegar;
-//	Time horaDeSair;
+	Time horaDeChegar;
+	Time horaDeSair;
 
 	//Construtor
 	//Cada funcion�rio tem: nome, cpf, data de nascimento, email, telefone, cargo ou fun��o, sal�rio bruto,

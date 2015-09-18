@@ -1,4 +1,3 @@
-package zoo;
 import java.util.*;
 public class Visita {
 	ArrayList<Visitante> visitantes;
