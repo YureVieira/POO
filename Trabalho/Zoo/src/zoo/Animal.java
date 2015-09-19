@@ -1,14 +1,18 @@
 package zoo;
 public abstract class  Animal {
-	String nome;
-	String tipo_alimentacao;
-	int idade;
-	String msg = "";
-	boolean doente;
-	boolean fome;
+	private String nome;
+        private String especie;
+	private String tipo_alimentacao;
+        public static int FEMEA = 0;
+        public static int MACHO = 1;
+        private int sexo;
+	private int idade;
+	private String msg = "";
+	private boolean doente;
+	private boolean fome;
 	
 	
-	public Animal(String nome, String tipo_alimentacao, int idade,String msg) {
+	public Animal(String nome, String especie,int sexo, String tipo_alimentacao, int idade,String msg) {
 		super();
 		this.nome = nome;
 		this.tipo_alimentacao = tipo_alimentacao;
@@ -57,6 +61,30 @@ public abstract class  Animal {
 		this.fome = fome;
 	}
 
+    public String getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
+
+    public int getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(int sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+        
 	public void Comer(){
 		System.out.println("Comendo");		
 	}
@@ -64,4 +92,5 @@ public abstract class  Animal {
 	public void cura(){
 		System.out.println("Curado");	
 	}
+        
 }

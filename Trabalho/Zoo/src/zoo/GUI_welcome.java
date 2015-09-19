@@ -22,7 +22,8 @@ public class GUI_welcome extends javax.swing.JFrame {
      */
     public GUI_welcome() {
         initComponents();
-        Background.criar_funcionarios();
+        Background.criar_funcionarios();    //Criando todos os funcionarios
+        Setores.init();                     //Criando todos os animais
     }
 
     /**
@@ -39,6 +40,7 @@ public class GUI_welcome extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jButton1.setText("Funcionario");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -76,6 +78,7 @@ public class GUI_welcome extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
