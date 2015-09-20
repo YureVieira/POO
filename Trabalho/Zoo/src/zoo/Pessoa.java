@@ -10,7 +10,6 @@ public abstract class Pessoa {
 	String nome;
 	String cpf;
 	String email;
-	String login;
 	//Construtor
 	public Pessoa(String nome, String cpf, String email) {
 		super();

@@ -5,8 +5,8 @@ import java.util.Date;
 public class Zootecnico extends Funcionario {
 	//Construtor
 	public Zootecnico(String nome, String cpf, String email,
-			double salario, int carga_horaria, long telefone) {
-		super(nome, cpf, email, salario, carga_horaria, telefone);
+			double salario, int carga_horaria, long telefone,String login) {
+		super(nome, cpf, email, salario, carga_horaria, telefone,login);
 		// TODO Auto-generated constructor stub
 	}
 

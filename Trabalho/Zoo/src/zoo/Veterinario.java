@@ -11,8 +11,8 @@ package zoo;
  */
 public class Veterinario extends Funcionario{
     public Veterinario(String nome,String cpf, String email,
-			double salario, int carga_horaria, long telefone) {
-		super(nome,cpf, email, salario, carga_horaria, telefone);
+			double salario, int carga_horaria, long telefone,String login) {
+		super(nome,cpf, email, salario, carga_horaria, telefone,login);
 		// TODO Auto-generated constructor stub
 	}
 

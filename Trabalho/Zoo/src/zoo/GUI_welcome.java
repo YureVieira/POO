@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
  * @author Micro
  */
 public class GUI_welcome extends javax.swing.JFrame {
-    //BackGround database;
     private Boolean login;
+    static Funcionario usuario = null;
     public void setLogin(boolean e){
         login = e;
     }
@@ -96,19 +96,25 @@ public class GUI_welcome extends javax.swing.JFrame {
         if(index >= 0)
         {
             Background.loginF(index);
-            winW.usuario = Background.quadroF.get(index);//Atribui um usuario para o proximo formulario
+            System.out.println("Index = "+ index);
+            usuario = Background.quadroF.get(index);//Atribui um usuario
+            if(usuario instanceof Biologo) winW.setTitle(usuario.getNome()+"<Biologo>");
+            if(usuario instanceof Veterinario) winW.setTitle(usuario.getNome()+"<Veterinario>");
+            if(usuario instanceof Tratador) winW.setTitle(usuario.getNome()+"<Tratador>");
+            if(usuario instanceof Zootecnico) winW.setTitle(usuario.getNome()+"<Zootecnico>");
             JOptionPane.showMessageDialog(null,"Login efetuado com sucesso");  
             
         }
         else{ 
             JOptionPane.showMessageDialog(null,"Usuario não existe");
             winW.setTitle("Desenvolvedor");
-        }           
+        }        
         
+        //winW.setTitle("Logado");
+        winW.setVisible(true);
         this.setVisible(false);
         
-        winW.setTitle(null);
-        winW.setVisible(true);
+        
         //this.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
