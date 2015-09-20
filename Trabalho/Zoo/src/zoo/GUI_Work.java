@@ -354,6 +354,28 @@ public class GUI_Work extends javax.swing.JFrame {
         this.func_listBox.setModel(modelFunc);
         this.func_listBox.setSelectedIndex(0);
     }
+    
+    void func_textBoxs_clearText() {
+        this.nomeFn_textBox.setText(null);
+        this.foneFn_textBox.setText(null);
+        this.cpfFn_textBox.setText(null);
+        this.emailFn_textBox.setText(null);
+    }
+
+    void func_texBoxs_loadValues(String s1, String s2, String s3, String s4, String s5) {
+        System.out.println(s1 + ", " + s2 + ", " + s3 + ", " + s4 + ", " + s5);
+        this.nomeFn_textBox.setText(s1);
+        this.foneFn_textBox.setText(s2);
+        this.cpfFn_textBox.setText(s4);
+        this.emailFn_textBox.setText(s3);
+    }
+    
+    void func_textBoxs_setEditable(boolean flag) {
+        this.nomeFn_textBox.setEditable(flag);
+        this.foneFn_textBox.setEditable(flag);
+        this.cpfFn_textBox.setEditable(flag);
+        this.emailFn_textBox.setEditable(flag);
+    }
     public GUI_Work() {
         initComponents();
         //Problema aqui, não quer alterar o titulo
@@ -402,7 +424,7 @@ public class GUI_Work extends javax.swing.JFrame {
         jComboBox4 = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        Funcionarios_comboBox = new javax.swing.JComboBox();
+        funcionarios_comboBox = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         func_listBox = new javax.swing.JList();
         jPanel7 = new javax.swing.JPanel();
@@ -411,6 +433,11 @@ public class GUI_Work extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        nomeFn_textBox = new javax.swing.JTextField();
+        foneFn_textBox = new javax.swing.JTextField();
+        emailFn_textBox = new javax.swing.JTextField();
+        cpfFn_textBox = new javax.swing.JTextField();
+        horario_textBox = new javax.swing.JTextField();
 
         jLabel7.setText("jLabel7");
 
@@ -605,7 +632,7 @@ public class GUI_Work extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(actions_comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox4, 0, 158, Short.MAX_VALUE))
+                    .addComponent(jComboBox4, 0, 227, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -648,16 +675,21 @@ public class GUI_Work extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane3.addTab("Lista de animais", jPanel1);
+        jTabbedPane3.addTab("Animais", jPanel1);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Funcionarios"));
 
-        Funcionarios_comboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Veterinarios", "Tratadores", "Zootecnicos", "Biologo" }));
+        funcionarios_comboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Veterinarios", "Tratadores", "Zootecnicos", "Biologo" }));
+        funcionarios_comboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                funcionarios_comboBoxActionPerformed(evt);
+            }
+        });
 
-        func_listBox.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        func_listBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                func_listBoxMouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(func_listBox);
 
@@ -665,13 +697,13 @@ public class GUI_Work extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Funcionarios_comboBox, 0, 143, Short.MAX_VALUE)
+            .addComponent(funcionarios_comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(Funcionarios_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(funcionarios_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -680,7 +712,7 @@ public class GUI_Work extends javax.swing.JFrame {
 
         jLabel12.setText("Nome");
 
-        jLabel13.setText("Cargo");
+        jLabel13.setText("Telefone");
 
         jLabel14.setText("Email");
 
@@ -695,26 +727,44 @@ public class GUI_Work extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13)
+                    .addComponent(jLabel16)
                     .addComponent(jLabel15)
                     .addComponent(jLabel14)
-                    .addComponent(jLabel16))
-                .addContainerGap(255, Short.MAX_VALUE))
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nomeFn_textBox, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(foneFn_textBox)
+                        .addComponent(emailFn_textBox)
+                        .addComponent(cpfFn_textBox)
+                        .addComponent(horario_textBox, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))
+                .addGap(63, 63, 63))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jLabel12)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(nomeFn_textBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(foneFn_textBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(emailFn_textBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
-                .addComponent(jLabel15)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(cpfFn_textBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel16)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(horario_textBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -732,13 +782,10 @@ public class GUI_Work extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(213, 213, 213))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Funcionarios", jPanel2);
@@ -766,8 +813,8 @@ public class GUI_Work extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Array com os nomes das colunas.
         load_animalList("Mamiferos");
+        load_funcList(this.VETERINARIOS);
         isOpened = true;
-        System.out.println("Aberto");
     }//GEN-LAST:event_formWindowOpened
 
     private void animal_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animal_comboBoxActionPerformed
@@ -901,6 +948,21 @@ public class GUI_Work extends javax.swing.JFrame {
         this.n_animais_label.setText("Animais: " + size_sector(this.animal_comboBox.getSelectedIndex()));
     }//GEN-LAST:event_animal_ListBoxValueChanged
 
+    private void funcionarios_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_funcionarios_comboBoxActionPerformed
+        load_funcList(this.funcionarios_comboBox.getSelectedIndex());
+    }//GEN-LAST:event_funcionarios_comboBoxActionPerformed
+
+    private void func_listBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_func_listBoxMouseClicked
+        this.func_textBoxs_clearText();
+        int indexCombo = this.funcionarios_comboBox.getSelectedIndex();
+        int indexList = this.func_listBox.getSelectedIndex();
+        this.func_textBoxs_clearText();
+//        this.func_texBoxs_loadValues(GUI_welcome.usuario.getNome(),
+//                ""+GUI_welcome.usuario.getTelefone(), //Conversão para string ""+int
+//                 ""+GUI_welcome.usuario.getCpf(), null);
+        
+    }//GEN-LAST:event_func_listBoxMouseClicked
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -929,15 +991,19 @@ public class GUI_Work extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox Funcionarios_comboBox;
     private javax.swing.JComboBox actions_comboBox;
     private javax.swing.JTextField alimentAnimal_textBox;
     private javax.swing.JList animal_ListBox;
     private javax.swing.JComboBox animal_comboBox;
+    private javax.swing.JTextField cpfFn_textBox;
+    private javax.swing.JTextField emailFn_textBox;
     private javax.swing.JTextField especie_textBox;
     private javax.swing.JProgressBar fome_progress;
+    private javax.swing.JTextField foneFn_textBox;
     private javax.swing.JList func_listBox;
+    private javax.swing.JComboBox funcionarios_comboBox;
     private javax.swing.JProgressBar higiene_progress;
+    private javax.swing.JTextField horario_textBox;
     private javax.swing.JTextField idadeAnimal_textBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox4;
@@ -970,6 +1036,7 @@ public class GUI_Work extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JLabel n_animais_label;
     private javax.swing.JTextField nameAnimal_textBox;
+    private javax.swing.JTextField nomeFn_textBox;
     private javax.swing.JProgressBar saude_progress;
     private javax.swing.JTextField sexo_textBox;
     // End of variables declaration//GEN-END:variables
