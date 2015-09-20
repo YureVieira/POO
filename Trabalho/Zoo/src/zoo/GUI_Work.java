@@ -67,7 +67,7 @@ public class GUI_Work extends javax.swing.JFrame {
         animal_ListBox.setSelectedIndex(0);
     }
     
-        void load_animalList(int index) {
+    void load_animalList(int index) {
         this.model = new DefaultListModel<String>();
         //model.clear();
         //this.animal_ListBox.clearSelection();
@@ -142,6 +142,38 @@ public class GUI_Work extends javax.swing.JFrame {
         animal_ListBox.setSelectedIndex(0);
     }
     
+    boolean create_animal(){
+        try{
+            int sexo = 0;
+            if(this.sexo_textBox.getText().equals("Femea")||
+                    this.sexo_textBox.getText().equals("femea")||
+                    this.sexo_textBox.getText().equals("F")||
+                    this.sexo_textBox.getText().equals("f"))sexo = 0;
+            
+            else if(this.sexo_textBox.getText().equals("Macho")||
+               this.sexo_textBox.getText().equals("macho")||
+               this.sexo_textBox.getText().equals("M")||
+               this.sexo_textBox.getText().equals("m"))sexo = 1;
+            else{
+                JOptionPane.showMessageDialog(null,"Valor para sexo incorreto");
+                return false;
+            }
+            
+            this.add_animals(                               //Adicionado animais ao arrayList
+                    this.animal_comboBox.getSelectedIndex(),//Diferencia se é mamifero, ave e etc
+                    this.nameAnimal_textBox.getText(),      //Nome
+                    this.especie_textBox.getText(),         //Especie
+                    sexo,                                   //Sexo (int)
+                    this.alimentAnimal_textBox.getText(),   //Alimentação
+                    Integer.parseInt(this.idadeAnimal_textBox.getText()));//Idade
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Idade invalida");
+                return false;
+            }
+        return true;
+    }
+    
     void remove_animals(int sector,int index){
         this.model = new DefaultListModel<String>();
         if (sector == this.Mamiferos) {
@@ -163,6 +195,75 @@ public class GUI_Work extends javax.swing.JFrame {
         animal_ListBox.setSelectedIndex(0);
     }
     
+    void feed_animals(int sector,int index){
+        if (sector == this.Mamiferos) {
+            Setores.setorM.get(index).comer();
+            this.fome_progress.setValue(Setores.setorM.get(index).getFome());
+        }
+        if (sector == this.Aves) {
+            Setores.setorAv.get(index).comer();
+            this.fome_progress.setValue(Setores.setorAv.get(index).getFome());
+        }
+        if (sector == this.Repteis) {
+            Setores.setorR.get(index).comer();
+            this.fome_progress.setValue(Setores.setorR.get(index).getFome());
+        }
+        if (sector == this.Anfibios) {
+            Setores.setorAn.get(index).comer();
+            this.fome_progress.setValue(Setores.setorAn.get(index).getFome());
+        }
+        if (sector == this.Invertebrados) {
+            Setores.setorI.get(index).comer();
+            this.fome_progress.setValue(Setores.setorI.get(index).getFome());
+        }
+    }
+    
+    void cure_animals(int sector,int index){
+        if (sector == this.Mamiferos) {
+            Setores.setorM.get(index).cura();
+            this.saude_progress.setValue(Setores.setorM.get(index).getSaude());
+        }
+        if (sector == this.Aves) {
+            Setores.setorAv.get(index).cura();
+            this.saude_progress.setValue(Setores.setorAv.get(index).getSaude());
+        }
+        if (sector == this.Repteis) {
+            Setores.setorR.get(index).cura();
+            this.saude_progress.setValue(Setores.setorR.get(index).getSaude());
+        }
+        if (sector == this.Anfibios) {
+            Setores.setorAn.get(index).cura();
+            this.saude_progress.setValue(Setores.setorAn.get(index).getSaude());
+        }
+        if (sector == this.Invertebrados) {
+            Setores.setorI.get(index).cura();
+            this.saude_progress.setValue(Setores.setorI.get(index).getSaude());
+        }
+    }
+    
+    void wash_animals(int sector,int index){
+        if (sector == this.Mamiferos) {
+            Setores.setorM.get(index).lavar();
+            this.higiene_progress.setValue(Setores.setorM.get(index).getHigiene());
+        }
+        if (sector == this.Aves) {
+            Setores.setorAv.get(index).lavar();
+            this.higiene_progress.setValue(Setores.setorAv.get(index).getHigiene());
+        }
+        if (sector == this.Repteis) {
+            Setores.setorR.get(index).lavar();
+            this.higiene_progress.setValue(Setores.setorR.get(index).getHigiene());
+        }
+        if (sector == this.Anfibios) {
+            Setores.setorAn.get(index).lavar();
+            this.higiene_progress.setValue(Setores.setorAn.get(index).getHigiene());
+        }
+        if (sector == this.Invertebrados) {
+            Setores.setorI.get(index).lavar();
+            this.higiene_progress.setValue(Setores.setorI.get(index).getHigiene());
+        }
+    }
+            
     int size_sector(int sector){
         this.model = new DefaultListModel<String>();
         if (sector == this.Mamiferos) {
@@ -210,7 +311,13 @@ public class GUI_Work extends javax.swing.JFrame {
         this.idadeAnimal_textBox.setText(s4);
         this.alimentAnimal_textBox.setText(s5);
     }
-
+    
+    void animal_progressBar_loadValues(int fome,int saude, int hig){
+        this.fome_progress.setValue(fome);
+        this.saude_progress.setValue(saude);
+        this.higiene_progress.setValue(hig);
+    }
+    
     public GUI_Work() {
         initComponents();
         //Problema aqui, não quer alterar o titulo
@@ -241,12 +348,12 @@ public class GUI_Work extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         sexo_textBox = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        higiene_progress = new javax.swing.JProgressBar();
+        saude_progress = new javax.swing.JProgressBar();
+        fome_progress = new javax.swing.JProgressBar();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         animal_ListBox = new javax.swing.JList();
@@ -348,17 +455,11 @@ public class GUI_Work extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Estado"));
 
-        jLabel5.setText("Fome");
+        jLabel18.setText("Fome");
 
-        jLabel1.setText("Saude");
+        jLabel19.setText("Saúde");
 
-        jLabel6.setText("Faminto");
-
-        jLabel8.setText("Saudavel");
-
-        jLabel10.setText("Higiene");
-
-        jLabel11.setText("Sujo");
+        jLabel20.setText("Higiene");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -366,35 +467,36 @@ public class GUI_Work extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel1))
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel6)))
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fome_progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(saude_progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel20)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel11)))
-                .addContainerGap(154, Short.MAX_VALUE))
+                        .addComponent(higiene_progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fome_progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(saude_progress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel20)
+                    .addComponent(higiene_progress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -466,7 +568,7 @@ public class GUI_Work extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(actions_comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox4, 0, 160, Short.MAX_VALUE))
+                    .addComponent(jComboBox4, 0, 158, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -648,12 +750,16 @@ public class GUI_Work extends javax.swing.JFrame {
 //      private int EDITAR      = 5;
         int index = actions_comboBox.getSelectedIndex();
         if (index == ALIMENTAR) {
+            this.animals_textBoxs_setEditable(false);
         } else if (index == CURAR) {
+            this.animals_textBoxs_setEditable(false);
         } else if (index == LIMPAR) {
+            this.animals_textBoxs_setEditable(false);
         } else if (index == ADICIONAR) {
             this.animals_textBoxs_setEditable(true);
             //this.animals_textBoxs_clearText();
         } else if (index == REMOVER) {
+            this.animals_textBoxs_setEditable(false);
         } else if (index == EDITAR) {
             this.animals_textBoxs_setEditable(true);
         } else {
@@ -664,48 +770,40 @@ public class GUI_Work extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         int index = actions_comboBox.getSelectedIndex();
+        int sector = this.animal_comboBox.getSelectedIndex();
+        int animal = this.animal_ListBox.getSelectedIndex();
+        
         if (index == ALIMENTAR) {
+            animals_textBoxs_setEditable(false);
+            //Alimenta um animal
+            this.feed_animals(sector, animal);
         } else if (index == CURAR) {
+            animals_textBoxs_setEditable(false);
+            //Cura um animal
+            cure_animals(sector, animal);
         } else if (index == LIMPAR) {
+            animals_textBoxs_setEditable(false);
+            //Limpa um animal
+            wash_animals(sector, animal);
         } else if (index == ADICIONAR) {
-            try{
-            int sexo = 0;
-            if(this.sexo_textBox.getText().equals("Femea")||
-                    this.sexo_textBox.getText().equals("femea")||
-                    this.sexo_textBox.getText().equals("F")||
-                    this.sexo_textBox.getText().equals("f"))sexo = 0;
-            
-            else if(this.sexo_textBox.getText().equals("Macho")||
-               this.sexo_textBox.getText().equals("macho")||
-               this.sexo_textBox.getText().equals("M")||
-               this.sexo_textBox.getText().equals("m"))sexo = 1;
-            else{
-                JOptionPane.showMessageDialog(null,"Valor para sexo Incorreto");
-                return;
-            }
-            
-            this.add_animals(                               //Adicionado animais ao arrayList
-                    this.animal_comboBox.getSelectedIndex(),//Diferencia se é mamifero, ave e etc
-                    this.nameAnimal_textBox.getText(),      //Nome
-                    this.especie_textBox.getText(),         //Especie
-                    sexo,                                   //Sexo (int)
-                    this.alimentAnimal_textBox.getText(),   //Alimentação
-                    Integer.parseInt(this.idadeAnimal_textBox.getText()));//Idade
+            animals_textBoxs_setEditable(true);
+            this.create_animal();
             load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Idade invalida");
-            }
-            
         } else if (index == REMOVER) {
             try{
-            remove_animals(this.animal_comboBox.getSelectedIndex(),this.animal_ListBox.getSelectedIndex());
+            animals_textBoxs_setEditable(false);
+            remove_animals(sector, animal);
             load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
             }catch(ArrayIndexOutOfBoundsException e){
                     JOptionPane.showMessageDialog(null,"Não ha mais nada a excluir");
                     }
         } else if (index == EDITAR) {
-            this.animals_textBoxs_setEditable(true);
+            animals_textBoxs_setEditable(true);
+            if(create_animal())
+                remove_animals(sector, animal);
+            load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
+           
+            this.animals_textBoxs_setEditable(false);
         } else {
             System.out.println("???");
         }
@@ -715,15 +813,9 @@ public class GUI_Work extends javax.swing.JFrame {
         if (isOpened == true) {
             try {
                 this.animals_textBoxs_clearText();
-
-                //DefaultListModel model = new DefaultListModel();
-                //this.animal_ListBox.setModel(model);
                 int indexCombo = this.animal_comboBox.getSelectedIndex();
                 int indexList = this.animal_ListBox.getSelectedIndex();
                 System.out.println(indexCombo + ", " + indexList);
-                //Busca de animais pelo nome
-//                this.selectedAnimal = Setores.busca_Animal(this.animal_ListBox.getSelectedValue().toString(),
-//                        this.animal_comboBox.getItemAt(index).toString());
 //                Mamiferos, Aves, Repteis, Anfibios, Invertebrados
                 switch (indexCombo) {
                     case 0:
@@ -749,11 +841,16 @@ public class GUI_Work extends javax.swing.JFrame {
                     sexo = "Macho";
                 }
                 System.out.println("OK");
+                //Carrega as caixas de textos com atributos do animal
                 this.animal_texBoxs_loadValues(this.selectedAnimal.getNome(),
                         this.selectedAnimal.getEspecie(),
                         sexo,
                         this.selectedAnimal.idadeToString(),
                         this.selectedAnimal.getTipo_alimentacao());
+                //Carrega as barras de progresso com as necessidades
+                this.animal_progressBar_loadValues(selectedAnimal.getFome(),
+                        selectedAnimal.getSaude(),
+                        selectedAnimal.getHigiene());
 
             } catch (Exception e) {                     //Erros gerais
                 System.err.println("Erro " + e);
@@ -766,15 +863,7 @@ public class GUI_Work extends javax.swing.JFrame {
         this.n_animais_label.setText("Animais: "+size_sector(this.animal_comboBox.getSelectedIndex()));
     }//GEN-LAST:event_animal_ListBoxValueChanged
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -807,26 +896,25 @@ public class GUI_Work extends javax.swing.JFrame {
     private javax.swing.JList animal_ListBox;
     private javax.swing.JComboBox animal_comboBox;
     private javax.swing.JTextField especie_textBox;
+    private javax.swing.JProgressBar fome_progress;
+    private javax.swing.JProgressBar higiene_progress;
     private javax.swing.JTextField idadeAnimal_textBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
@@ -844,6 +932,7 @@ public class GUI_Work extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JLabel n_animais_label;
     private javax.swing.JTextField nameAnimal_textBox;
+    private javax.swing.JProgressBar saude_progress;
     private javax.swing.JTextField sexo_textBox;
     // End of variables declaration//GEN-END:variables
 }

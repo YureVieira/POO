@@ -10,8 +10,10 @@ public abstract class Animal {
     private int sexo;
     private int idade;
     private String msg = "";
-    private boolean doente;
-    private boolean fome;
+    private int saude = 50;
+    private int fome = 50;
+    private int higiene = 50;
+
 
     public Animal(String nome, String especie, int sexo, String tipo_alimentacao, int idade, String msg) {
         super();
@@ -47,19 +49,19 @@ public abstract class Animal {
         this.idade = idade;
     }
 
-    public boolean isDoente() {
-        return doente;
+    public int getSaude() {
+        return saude;
     }
 
-    public void setDoente(boolean doente) {
-        this.doente = doente;
+    public void setSaude(int saude) {
+        this.saude = saude;
     }
 
-    public boolean isFome() {
+    public int getFome() {
         return fome;
     }
 
-    public void setFome(boolean fome) {
+    public void setFome(int fome) {
         this.fome = fome;
     }
 
@@ -90,13 +92,27 @@ public abstract class Animal {
     public String idadeToString() {
         return "" + idade;
     }
+    
+    public int getHigiene() {
+        return higiene;
+    }
 
-    public void Comer() {
+    public void setHigiene(int higiene) {
+        this.higiene = higiene;
+    }
+    
+    public void comer() {
+        this.fome = this.fome - 5; 
         System.out.println("Comendo");
     }
 
     public void cura() {
-        System.out.println("Curado");
+        this.saude = this.saude + 5;
+        System.out.println("Curando");
     }
-
+    
+    public void lavar(){
+        this.higiene = this.higiene + 5;
+        System.out.println("Limpando");
+    }
 }
