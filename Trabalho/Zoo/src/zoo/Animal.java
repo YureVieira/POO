@@ -9,8 +9,7 @@ public abstract class  Animal {
 	private int idade;
 	private String msg = "";
 	private boolean doente;
-	private boolean fome;
-	
+	private boolean fome;	
 	
 	public Animal(String nome, String especie,int sexo, String tipo_alimentacao, int idade,String msg) {
 		super();
@@ -85,6 +84,9 @@ public abstract class  Animal {
         this.msg = msg;
     }
         
+    public String idadeToString() {
+        return "" + idade;
+    }
 	public void Comer(){
 		System.out.println("Comendo");		
 	}
