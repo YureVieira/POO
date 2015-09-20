@@ -91,17 +91,25 @@ public class GUI_welcome extends javax.swing.JFrame {
         
         //Faz a busca e loga se usuario existir
         int index = Background.busca_funcionario(win1.getCpf(),win1.getPassword(),win1.getFnc()) ;
+        //Segundo form
+        GUI_Work winW = new GUI_Work();
         if(index >= 0)
         {
             Background.loginF(index);
+            winW.usuario = Background.quadroF.get(index);//Atribui um usuario para o proximo formulario
             JOptionPane.showMessageDialog(null,"Login efetuado com sucesso");  
+            
         }
         else{ 
             JOptionPane.showMessageDialog(null,"Usuario não existe");
+            winW.setTitle("Desenvolvedor");
         }           
-        //Segundo form
-        GUI_Work winW = new GUI_Work();
+        
+        this.setVisible(false);
+        
+        winW.setTitle(null);
         winW.setVisible(true);
+        //this.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

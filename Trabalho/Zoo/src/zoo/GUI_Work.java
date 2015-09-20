@@ -16,76 +16,210 @@ import javax.swing.ListSelectionModel;
  * @author Micro
  */
 public class GUI_Work extends javax.swing.JFrame {
-    
+
     Animal selectedAnimal;
     boolean isOpened = false;
+    Funcionario usuario = null;
     // Constantes representando os menus de ação para animais
-    private int ALIMENTAR   = 0;
-    private int CURAR       = 1;
-    private int LIMPAR      = 2;
-    private int ADICIONAR   = 3;
-    private int REMOVER     = 4;
-    private int EDITAR      = 5;
-       DefaultListModel<String> model;
-    void load_animalList(String str){                  
-        model = new DefaultListModel<String>();
-        if(str.equals("Mamiferos")){
-        for(Mamifero s : Setores.setorM) { 
-            model.addElement(s.getNome());
+    private int ALIMENTAR = 0;
+    private int CURAR = 1;
+    private int LIMPAR = 2;
+    private int ADICIONAR = 3;
+    private int REMOVER = 4;
+    private int EDITAR = 5;
+
+    private int Mamiferos = 0;
+    private int Aves = 1;
+    private int Repteis = 2;
+    private int Anfibios = 3;
+    private int Invertebrados = 4;
+
+    DefaultListModel<String> model;
+
+    void load_animalList(String str) {
+        this.model = new DefaultListModel<String>();
+        if (str.equals("Mamiferos")) {
+            for (Mamifero s : Setores.setorM) {
+                model.addElement(s.getNome());
+            }
         }
+        if (str.equals("Aves")) {
+            for (Ave s : Setores.setorAv) {
+                model.addElement(s.getNome());
+            }
         }
-        if(str.equals("Aves")){
-        for(Ave s : Setores.setorAv) { 
-            model.addElement(s.getNome());
+        if (str.equals("Repteis")) {
+            for (Reptil s : Setores.setorR) {
+                model.addElement(s.getNome());
+            }
         }
+        if (str.equals("Anfibios")) {
+            for (Anfibio s : Setores.setorAn) {
+                model.addElement(s.getNome());
+            }
         }
-        if(str.equals("Repteis")){
-        for(Reptil s : Setores.setorR) { 
-            model.addElement(s.getNome());
-        }
-        }
-        if(str.equals("Anfibios")){
-        for(Anfibio s : Setores.setorAn) { 
-            model.addElement(s.getNome());
-        }
-        }
-        if(str.equals("Invertebrados")){
-        for(Invertebrado s : Setores.setorI) { 
-            model.addElement(s.getNome());
-        }
+        if (str.equals("Invertebrados")) {
+            for (Invertebrado s : Setores.setorI) {
+                model.addElement(s.getNome());
+            }
         }
         animal_ListBox.setModel(model);
         animal_ListBox.setSelectedIndex(0);
     }
+    
+        void load_animalList(int index) {
+        this.model = new DefaultListModel<String>();
+        //model.clear();
+        //this.animal_ListBox.clearSelection();
+        if (index == this.Mamiferos) {
+            for (Mamifero s : Setores.setorM) {
+                model.addElement(s.getNome());
+            }
+        }
+        if (index == this.Aves) {
+            for (Ave s : Setores.setorAv) {
+                model.addElement(s.getNome());
+            }
+        }
+        if (index == this.Repteis) {
+            for (Reptil s : Setores.setorR) {
+                model.addElement(s.getNome());
+            }
+        }
+        if (index == this.Anfibios) {
+            for (Anfibio s : Setores.setorAn) {
+                model.addElement(s.getNome());
+            }
+        }
+        if (index == this.Invertebrados) {
+            for (Invertebrado s : Setores.setorI) {
+                model.addElement(s.getNome());
+            }
+        }
+        animal_ListBox.setModel(model);
+        animal_ListBox.setSelectedIndex(0);
+    }
+    
+    void add_animals(String str, String nome, String especie, int sexo, String tipo_alimentacao, int idade) {
+        this.model = new DefaultListModel<String>();
+        if (str.equals("Mamiferos")) {
+            Setores.setorM.add(new Mamifero(nome, especie, sexo, tipo_alimentacao, idade, ""));
+        }
+        if (str.equals("Aves")) {
+            Setores.setorAv.add(new Ave(nome, especie, sexo, tipo_alimentacao, idade, ""));
+        }
+        if (str.equals("Repteis")) {
+            Setores.setorR.add(new Reptil(nome, especie, sexo, tipo_alimentacao, idade, ""));
+        }
+        if (str.equals("Anfibios")) {
+            Setores.setorAn.add(new Anfibio(nome, especie, sexo, tipo_alimentacao, idade, ""));
+        }
+        if (str.equals("Invertebrados")) {
+            Setores.setorI.add(new Invertebrado(nome, especie, sexo, tipo_alimentacao, idade, ""));
+        }
+        animal_ListBox.setModel(model);
+        animal_ListBox.setSelectedIndex(0);
+    }
+
+    void add_animals(int sector, String nome, String especie, int sexo, String tipo_alimentacao, int idade) {
+        this.model = new DefaultListModel<String>();
+        if (sector == this.Mamiferos) {
+            Setores.setorM.add(new Mamifero(nome, especie, sexo, tipo_alimentacao, idade, ""));
+        }
+        if (sector == this.Aves) {
+            Setores.setorAv.add(new Ave(nome, especie, sexo, tipo_alimentacao, idade, ""));
+        }
+        if (sector == this.Repteis) {
+            Setores.setorR.add(new Reptil(nome, especie, sexo, tipo_alimentacao, idade, ""));
+        }
+        if (sector == this.Anfibios) {
+            Setores.setorAn.add(new Anfibio(nome, especie, sexo, tipo_alimentacao, idade, ""));
+        }
+        if (sector == this.Invertebrados) {
+            Setores.setorI.add(new Invertebrado(nome, especie, sexo, tipo_alimentacao, idade, ""));
+        }
+        animal_ListBox.setModel(model);
+        animal_ListBox.setSelectedIndex(0);
+    }
+    
+    void remove_animals(int sector,int index){
+        this.model = new DefaultListModel<String>();
+        if (sector == this.Mamiferos) {
+            Setores.setorM.remove(index);
+        }
+        if (sector == this.Aves) {
+            Setores.setorAv.remove(index);
+        }
+        if (sector == this.Repteis) {
+            Setores.setorR.remove(index);
+        }
+        if (sector == this.Anfibios) {
+            Setores.setorAn.remove(index);
+        }
+        if (sector == this.Invertebrados) {
+            Setores.setorI.remove(index);
+        }
+        animal_ListBox.setModel(model);
+        animal_ListBox.setSelectedIndex(0);
+    }
+    
+    int size_sector(int sector){
+        this.model = new DefaultListModel<String>();
+        if (sector == this.Mamiferos) {
+            return Setores.setorM.size();
+        }
+        if (sector == this.Aves) {
+            return Setores.setorAv.size();
+        }
+        if (sector == this.Repteis) {
+            return Setores.setorR.size();
+        }
+        if (sector == this.Anfibios) {
+            return Setores.setorAn.size();
+        }
+        if (sector == this.Invertebrados) {
+            return Setores.setorI.size();
+        }
+        return 0;
+    }
     /*Ativa ou desativa a edição nos textBoxs que 
-    * exibem as informações dos animais */
-    private void animals_textBoxs_setEditable(boolean flag){
-        nameAnimal_textBox.setEditable(flag);
-        alimentAnimal_textBox.setEditable(flag);
-        especie_textBox.setEditable(flag);
-        idadeAnimal_textBox.setEditable(flag);
+     * exibem as informações dos animais */
+
+    private void animals_textBoxs_setEditable(boolean flag) {
+        this.nameAnimal_textBox.setEditable(flag);
+        this.alimentAnimal_textBox.setEditable(flag);
+        this.especie_textBox.setEditable(flag);
+        this.idadeAnimal_textBox.setEditable(flag);
+        this.sexo_textBox.setEditable(flag);
     }
     /*Limpa os textBoxs relativos aos animais*/
-    void animals_textBoxs_clearText(){
-        nameAnimal_textBox.setText(null);
-        alimentAnimal_textBox.setText(null);
-        especie_textBox.setText(null);
-        idadeAnimal_textBox.setText(null);
+
+    void animals_textBoxs_clearText() {
+        this.nameAnimal_textBox.setText(null);
+        this.alimentAnimal_textBox.setText(null);
+        this.especie_textBox.setText(null);
+        this.idadeAnimal_textBox.setText(null);
+        this.sexo_textBox.setText(null);
     }
-    void animal_texBoxs_loadValues(String s1,String s2, String s3,String s4){
-        nameAnimal_textBox.setText(s1);
-        alimentAnimal_textBox.setText(s2);
-        especie_textBox.setText(s3);
-        idadeAnimal_textBox.setText(s4);
+
+    void animal_texBoxs_loadValues(String s1, String s2, String s3, String s4, String s5) {
+        System.out.println(s1 + ", " + s2 + ", " + s3 + ", " + s4 + ", " + s5);
+        this.nameAnimal_textBox.setText(s1);
+        this.especie_textBox.setText(s2);
+        this.sexo_textBox.setText(s3);
+        this.idadeAnimal_textBox.setText(s4);
+        this.alimentAnimal_textBox.setText(s5);
     }
-    
-public GUI_Work() {
+
+    public GUI_Work() {
         initComponents();
+        //Problema aqui, não quer alterar o titulo
+        if (usuario != null) {
+            this.setTitle(usuario.nome);
+        }
         animals_textBoxs_setEditable(false);
     }
-    
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -104,6 +238,8 @@ public GUI_Work() {
         especie_textBox = new javax.swing.JTextField();
         idadeAnimal_textBox = new javax.swing.JTextField();
         alimentAnimal_textBox = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        sexo_textBox = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -115,6 +251,7 @@ public GUI_Work() {
         jScrollPane2 = new javax.swing.JScrollPane();
         animal_ListBox = new javax.swing.JList();
         animal_comboBox = new javax.swing.JComboBox();
+        n_animais_label = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         actions_comboBox = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
@@ -147,40 +284,42 @@ public GUI_Work() {
 
         jLabel9.setText("Especie");
 
-        jLabel3.setText("Idade");
+        jLabel3.setText("Idade(anos)");
 
         jLabel4.setText("Alimentação");
 
         nameAnimal_textBox.setEditable(false);
-        nameAnimal_textBox.setText("Juca");
 
         especie_textBox.setEditable(false);
-        especie_textBox.setText("macaco");
 
         idadeAnimal_textBox.setEditable(false);
-        idadeAnimal_textBox.setText("12");
 
         alimentAnimal_textBox.setEditable(false);
-        alimentAnimal_textBox.setText("Onivoro");
+
+        jLabel17.setText("Sexo");
+
+        sexo_textBox.setEditable(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel9)
                     .addComponent(jLabel4)
+                    .addComponent(jLabel17)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(especie_textBox)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(idadeAnimal_textBox)
-                    .addComponent(alimentAnimal_textBox, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                    .addComponent(nameAnimal_textBox))
-                .addGap(42, 42, 42))
+                    .addComponent(alimentAnimal_textBox)
+                    .addComponent(sexo_textBox, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(especie_textBox)
+                    .addComponent(nameAnimal_textBox, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,13 +333,17 @@ public GUI_Work() {
                     .addComponent(especie_textBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(sexo_textBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(idadeAnimal_textBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(alimentAnimal_textBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Estado"));
@@ -236,7 +379,7 @@ public GUI_Work() {
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel11)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,6 +400,11 @@ public GUI_Work() {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Setores"));
 
+        animal_ListBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                animal_ListBoxMouseClicked(evt);
+            }
+        });
         animal_ListBox.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 animal_ListBoxValueChanged(evt);
@@ -271,20 +419,24 @@ public GUI_Work() {
             }
         });
 
+        n_animais_label.setText("...");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(animal_comboBox, 0, 119, Short.MAX_VALUE)
+            .addComponent(animal_comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(n_animais_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addComponent(animal_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(n_animais_label))
         );
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Ações"));
@@ -303,8 +455,8 @@ public GUI_Work() {
             }
         });
 
-        jComboBox4.setEditable(true);
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carne", "Vegetais", "Frutas" }));
+        jComboBox4.setEnabled(false);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -314,7 +466,7 @@ public GUI_Work() {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(actions_comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jComboBox4, 0, 160, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -325,7 +477,7 @@ public GUI_Work() {
                 .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -334,11 +486,11 @@ public GUI_Work() {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -406,11 +558,10 @@ public GUI_Work() {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel15)
-                        .addComponent(jLabel14)
-                        .addComponent(jLabel16)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel16))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -471,7 +622,7 @@ public GUI_Work() {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         // Array com os nomes das colunas.
@@ -496,66 +647,124 @@ public GUI_Work() {
 //      private int REMOVER     = 4;
 //      private int EDITAR      = 5;
         int index = actions_comboBox.getSelectedIndex();
-        if(index == ALIMENTAR){
-        }
-        else if(index == CURAR){}
-        else if(index == LIMPAR){}
-        else if(index == ADICIONAR){
+        if (index == ALIMENTAR) {
+        } else if (index == CURAR) {
+        } else if (index == LIMPAR) {
+        } else if (index == ADICIONAR) {
             this.animals_textBoxs_setEditable(true);
-            this.animals_textBoxs_clearText();
-        }
-        else if(index == REMOVER){}
-        else if(index == EDITAR){
+            //this.animals_textBoxs_clearText();
+        } else if (index == REMOVER) {
+        } else if (index == EDITAR) {
             this.animals_textBoxs_setEditable(true);
+        } else {
+            System.out.println("???");
         }
-        else System.out.println("???");
-        
+
     }//GEN-LAST:event_actions_comboBoxActionPerformed
 
-    private void animal_ListBoxValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_animal_ListBoxValueChanged
-        // TODO add your handling code here: 
-        if(isOpened == true){
-        try{
-            this.animals_textBoxs_clearText();
-        
-            DefaultListModel model = new DefaultListModel();
-            System.out.println(this.animal_ListBox.getSelectedValue().toString());
-            this.animal_ListBox.setModel(model);
-        
-        int index = this.animal_comboBox.getSelectedIndex();
-        
-            //Busca de animais pelo nome
-            this.selectedAnimal = Setores.busca_Animal(this.animal_ListBox.getSelectedValue().toString(),
-                this.animal_comboBox.getItemAt(index).toString());
-        }
-        catch(noFoundAnimalException e){        //Não encontrado
-            JOptionPane.showMessageDialog(null,e);
-        }
-        catch(moreThanOneAnimalException e){    //Duplicado
-            JOptionPane.showMessageDialog(null,e);
-        }
-        catch(Exception e){                     //Erros gerais
-            System.err.println("Erro 1"+e);
-        }
-        
-        //Carrege nos textBoxs alguns atributos da classe
-        try{
-        this.animal_texBoxs_loadValues(this.selectedAnimal.getNome(),
-                this.selectedAnimal.getEspecie(),
-                this.selectedAnimal.idadeToString(),
-                this.selectedAnimal.getTipo_alimentacao());
-            System.out.println("Item selecionado");
-        }
-        catch(Exception e){
-            System.err.println("Erro 2"+e);
-        }
-        }
-    }//GEN-LAST:event_animal_ListBoxValueChanged
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        System.out.println("Ok");
+        int index = actions_comboBox.getSelectedIndex();
+        if (index == ALIMENTAR) {
+        } else if (index == CURAR) {
+        } else if (index == LIMPAR) {
+        } else if (index == ADICIONAR) {
+            try{
+            int sexo = 0;
+            if(this.sexo_textBox.getText().equals("Femea")||
+                    this.sexo_textBox.getText().equals("femea")||
+                    this.sexo_textBox.getText().equals("F")||
+                    this.sexo_textBox.getText().equals("f"))sexo = 0;
+            
+            else if(this.sexo_textBox.getText().equals("Macho")||
+               this.sexo_textBox.getText().equals("macho")||
+               this.sexo_textBox.getText().equals("M")||
+               this.sexo_textBox.getText().equals("m"))sexo = 1;
+            else{
+                JOptionPane.showMessageDialog(null,"Valor para sexo Incorreto");
+                return;
+            }
+            
+            this.add_animals(                               //Adicionado animais ao arrayList
+                    this.animal_comboBox.getSelectedIndex(),//Diferencia se é mamifero, ave e etc
+                    this.nameAnimal_textBox.getText(),      //Nome
+                    this.especie_textBox.getText(),         //Especie
+                    sexo,                                   //Sexo (int)
+                    this.alimentAnimal_textBox.getText(),   //Alimentação
+                    Integer.parseInt(this.idadeAnimal_textBox.getText()));//Idade
+            load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Idade invalida");
+            }
+            
+        } else if (index == REMOVER) {
+            try{
+            remove_animals(this.animal_comboBox.getSelectedIndex(),this.animal_ListBox.getSelectedIndex());
+            load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
+            }catch(ArrayIndexOutOfBoundsException e){
+                    JOptionPane.showMessageDialog(null,"Não ha mais nada a excluir");
+                    }
+        } else if (index == EDITAR) {
+            this.animals_textBoxs_setEditable(true);
+        } else {
+            System.out.println("???");
+        }
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void animal_ListBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_animal_ListBoxMouseClicked
+        if (isOpened == true) {
+            try {
+                this.animals_textBoxs_clearText();
+
+                //DefaultListModel model = new DefaultListModel();
+                //this.animal_ListBox.setModel(model);
+                int indexCombo = this.animal_comboBox.getSelectedIndex();
+                int indexList = this.animal_ListBox.getSelectedIndex();
+                System.out.println(indexCombo + ", " + indexList);
+                //Busca de animais pelo nome
+//                this.selectedAnimal = Setores.busca_Animal(this.animal_ListBox.getSelectedValue().toString(),
+//                        this.animal_comboBox.getItemAt(index).toString());
+//                Mamiferos, Aves, Repteis, Anfibios, Invertebrados
+                switch (indexCombo) {
+                    case 0:
+                        this.selectedAnimal = Setores.setorM.get(indexList);
+                        break;
+                    case 1:
+                        this.selectedAnimal = Setores.setorAv.get(indexList);
+                        break;
+                    case 2:
+                        this.selectedAnimal = Setores.setorR.get(indexList);
+                        break;
+                    case 3:
+                        this.selectedAnimal = Setores.setorAn.get(indexList);
+                        break;
+                    case 4:
+                        this.selectedAnimal = Setores.setorI.get(indexList);
+                        break;
+                }
+                String sexo;
+                if (this.selectedAnimal.getSexo() == Animal.FEMEA) {
+                    sexo = "Femea";
+                } else {
+                    sexo = "Macho";
+                }
+                System.out.println("OK");
+                this.animal_texBoxs_loadValues(this.selectedAnimal.getNome(),
+                        this.selectedAnimal.getEspecie(),
+                        sexo,
+                        this.selectedAnimal.idadeToString(),
+                        this.selectedAnimal.getTipo_alimentacao());
+
+            } catch (Exception e) {                     //Erros gerais
+                System.err.println("Erro " + e);
+            }
+        }
+    }//GEN-LAST:event_animal_ListBoxMouseClicked
+
+    private void animal_ListBoxValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_animal_ListBoxValueChanged
+        //Exibe em uma label quantos animais existem no setor atual
+        this.n_animais_label.setText("Animais: "+size_sector(this.animal_comboBox.getSelectedIndex()));
+    }//GEN-LAST:event_animal_ListBoxValueChanged
 
     /**
      * @param args the command line arguments
@@ -610,6 +819,7 @@ public GUI_Work() {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -632,6 +842,8 @@ public GUI_Work() {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JLabel n_animais_label;
     private javax.swing.JTextField nameAnimal_textBox;
+    private javax.swing.JTextField sexo_textBox;
     // End of variables declaration//GEN-END:variables
 }

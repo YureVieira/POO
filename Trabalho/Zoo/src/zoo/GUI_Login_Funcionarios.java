@@ -50,6 +50,7 @@ public class GUI_Login_Funcionarios extends java.awt.Dialog {
         jComboBox1 = new javax.swing.JComboBox();
 
         setResizable(false);
+        setTitle("Login");
         setType(java.awt.Window.Type.POPUP);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
