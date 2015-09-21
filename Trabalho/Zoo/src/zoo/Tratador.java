@@ -7,15 +7,15 @@ public class Tratador extends Funcionario {
 	ArrayList<Setores> setores;
 	
 	public Tratador(String nome,String cpf, String email,
-			double salario, int carga_horaria, long telefone,String login) {
+			double salario, int carga_horaria, String telefone,String login) {
 		super(nome, cpf, email, salario, carga_horaria, telefone,login);
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public int Recebe_salario() {
+	public int Alimentar() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 2;
 	}
 
 }

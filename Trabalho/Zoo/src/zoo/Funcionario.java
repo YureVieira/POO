@@ -13,7 +13,7 @@ public class Funcionario extends Pessoa{
 	//Atributos
 	double salario;
 	int carga_horaria;
-	long telefone;
+	String telefone;
         String login;
 //	Time horaDeChegar;
 //	Time horaDeSair;
@@ -23,7 +23,7 @@ public class Funcionario extends Pessoa{
 	//sal�rio l�quido, banco, conta corrente e ag�ncia bancaria, dia e hor�rio de trabalho.
 	
 	public Funcionario(String nome,String cpf, String email,
-			double salario, int carga_horaria, long telefone,String login) {
+			double salario, int carga_horaria, String telefone,String login) {
 		super(nome, cpf, email);
 		this.salario = salario;
 		this.carga_horaria = carga_horaria;
@@ -53,11 +53,11 @@ public class Funcionario extends Pessoa{
         this.carga_horaria = carga_horaria;
     }
 
-    public long getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(long telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

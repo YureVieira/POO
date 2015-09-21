@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Trabalho_git/POO/Trabalho/Zoo/src/zoo/Animal.java</file>
             <file>file:/F:/Trabalho_git/POO/Trabalho/Zoo/src/zoo/GUI_welcome.java</file>
-            <file>file:/F:/Trabalho_git/POO/Trabalho/Zoo/src/zoo/Background.java</file>
-            <file>file:/F:/Trabalho_git/POO/Trabalho/Zoo/src/zoo/GUI_Login_Funcionarios.java</file>
-            <file>file:/F:/Trabalho_git/POO/Trabalho/Zoo/src/zoo/Setores.java</file>
-            <file>file:/F:/Trabalho_git/POO/Trabalho/Zoo/src/zoo/GUI_Work.java</file>
+            <file>file:/F:/Trabalho_git/POO/Trabalho/Zoo/src/zoo/Tratador.java</file>
+            <file>file:/F:/Trabalho_git/POO/Trabalho/Zoo/src/zoo/Zootecnico.java</file>
+            <file>file:/F:/Trabalho_git/POO/Trabalho/Zoo/src/zoo/Veterinario.java</file>
+            <file>file:/F:/Trabalho_git/POO/Trabalho/Zoo/src/zoo/Funcionario.java</file>
         </group>
     </open-files>
 </project-private>

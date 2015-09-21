@@ -24,16 +24,17 @@ public class GUI_Work extends javax.swing.JFrame {
     private int ALIMENTAR = 0;
     private int CURAR = 1;
     private int LIMPAR = 2;
-    private int ADICIONAR = 3;
-    private int REMOVER = 4;
-    private int EDITAR = 5;
+    private int ANALIZAR = 3;
+    private int ADICIONAR = 4;
+    private int REMOVER = 5;
+    private int EDITAR = 6;
 
     private int MAMIFEROS = 0;
     private int AVES = 1;
     private int REPTEIS = 2;
     private int ANFIBIOS = 3;
     private int INVERTEBRADOS = 4;
-    
+
     private int VETERINARIOS = 0;
     private int TRATADORES = 1;
     private int BIOLOGOS = 3;
@@ -45,7 +46,7 @@ public class GUI_Work extends javax.swing.JFrame {
     /**
      * *****************************************************************************
      * Rotinas para animais
- * ***************************************************************************
+     * ***************************************************************************
      */
     void load_animalList(String str) {
         this.model = new DefaultListModel<String>();
@@ -78,6 +79,9 @@ public class GUI_Work extends javax.swing.JFrame {
         animal_ListBox.setSelectedIndex(0);
     }
 
+    /**
+     * ***********************************************************************
+     */
     void load_animalList(int index) {
         this.model = new DefaultListModel<String>();
         //model.clear();
@@ -111,49 +115,58 @@ public class GUI_Work extends javax.swing.JFrame {
         animal_ListBox.setSelectedIndex(0);
     }
 
-    void add_animals(String str, String nome, String especie, int sexo, String tipo_alimentacao, int idade) {
+    /**
+     * ***********************************************************************
+     */
+    void add_animals(String str, String nome, String especie, int sexo, String tipo_alimentacao, int idade,String analise) {
         this.model = new DefaultListModel<String>();
         if (str.equals("Mamiferos")) {
-            Setores.setorM.add(new Mamifero(nome, especie, sexo, tipo_alimentacao, idade, ""));
+            Setores.setorM.add(new Mamifero(nome, especie, sexo, tipo_alimentacao, idade, analise));
         }
         if (str.equals("Aves")) {
-            Setores.setorAv.add(new Ave(nome, especie, sexo, tipo_alimentacao, idade, ""));
+            Setores.setorAv.add(new Ave(nome, especie, sexo, tipo_alimentacao, idade, analise));
         }
         if (str.equals("Repteis")) {
-            Setores.setorR.add(new Reptil(nome, especie, sexo, tipo_alimentacao, idade, ""));
+            Setores.setorR.add(new Reptil(nome, especie, sexo, tipo_alimentacao, idade, analise));
         }
         if (str.equals("Anfibios")) {
-            Setores.setorAn.add(new Anfibio(nome, especie, sexo, tipo_alimentacao, idade, ""));
+            Setores.setorAn.add(new Anfibio(nome, especie, sexo, tipo_alimentacao, idade, analise));
         }
         if (str.equals("Invertebrados")) {
-            Setores.setorI.add(new Invertebrado(nome, especie, sexo, tipo_alimentacao, idade, ""));
+            Setores.setorI.add(new Invertebrado(nome, especie, sexo, tipo_alimentacao, idade, analise));
         }
         animal_ListBox.setModel(model);
         animal_ListBox.setSelectedIndex(0);
     }
 
-    void add_animals(int sector, String nome, String especie, int sexo, String tipo_alimentacao, int idade) {
+    /**
+     * ***********************************************************************
+     */
+    void add_animals(int sector, String nome, String especie, int sexo, String tipo_alimentacao, int idade,String analise) {
         this.model = new DefaultListModel<String>();
         if (sector == this.MAMIFEROS) {
-            Setores.setorM.add(new Mamifero(nome, especie, sexo, tipo_alimentacao, idade, ""));
+            Setores.setorM.add(new Mamifero(nome, especie, sexo, tipo_alimentacao, idade, analise));
         }
         if (sector == this.AVES) {
-            Setores.setorAv.add(new Ave(nome, especie, sexo, tipo_alimentacao, idade, ""));
+            Setores.setorAv.add(new Ave(nome, especie, sexo, tipo_alimentacao, idade, analise));
         }
         if (sector == this.REPTEIS) {
-            Setores.setorR.add(new Reptil(nome, especie, sexo, tipo_alimentacao, idade, ""));
+            Setores.setorR.add(new Reptil(nome, especie, sexo, tipo_alimentacao, idade, analise));
         }
         if (sector == this.ANFIBIOS) {
-            Setores.setorAn.add(new Anfibio(nome, especie, sexo, tipo_alimentacao, idade, ""));
+            Setores.setorAn.add(new Anfibio(nome, especie, sexo, tipo_alimentacao, idade, analise));
         }
         if (sector == this.INVERTEBRADOS) {
-            Setores.setorI.add(new Invertebrado(nome, especie, sexo, tipo_alimentacao, idade, ""));
+            Setores.setorI.add(new Invertebrado(nome, especie, sexo, tipo_alimentacao, idade, analise));
         }
         animal_ListBox.setModel(model);
         animal_ListBox.setSelectedIndex(0);
     }
 
-    boolean create_animal() {
+    /**
+     * ***********************************************************************
+     */
+    boolean create_animal(String analise) {
         try {
             int sexo = 0;
             if (this.sexo_textBox.getText().equals("Femea")
@@ -177,7 +190,8 @@ public class GUI_Work extends javax.swing.JFrame {
                     this.especie_textBox.getText(), //Especie
                     sexo, //Sexo (int)
                     this.alimentAnimal_textBox.getText(), //Alimentação
-                    Integer.parseInt(this.idadeAnimal_textBox.getText()));//Idade
+                    Integer.parseInt(this.idadeAnimal_textBox.getText()),
+                    analise);//Idade
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Idade invalida");
             return false;
@@ -185,6 +199,9 @@ public class GUI_Work extends javax.swing.JFrame {
         return true;
     }
 
+    /**
+     * ***********************************************************************
+     */
     void remove_animals(int sector, int index) {
         this.model = new DefaultListModel<String>();
         if (sector == this.MAMIFEROS) {
@@ -206,6 +223,9 @@ public class GUI_Work extends javax.swing.JFrame {
         animal_ListBox.setSelectedIndex(0);
     }
 
+    /**
+     * ***********************************************************************
+     */
     void feed_animals(int sector, int index) {
         if (sector == this.MAMIFEROS) {
             Setores.setorM.get(index).comer();
@@ -229,6 +249,9 @@ public class GUI_Work extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * ***********************************************************************
+     */
     void cure_animals(int sector, int index) {
         if (sector == this.MAMIFEROS) {
             Setores.setorM.get(index).cura();
@@ -252,6 +275,9 @@ public class GUI_Work extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * ***********************************************************************
+     */
     void wash_animals(int sector, int index) {
         if (sector == this.MAMIFEROS) {
             Setores.setorM.get(index).lavar();
@@ -275,6 +301,9 @@ public class GUI_Work extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * ***********************************************************************
+     */
     int size_sector(int sector) {
         this.model = new DefaultListModel<String>();
         if (sector == this.MAMIFEROS) {
@@ -294,6 +323,10 @@ public class GUI_Work extends javax.swing.JFrame {
         }
         return 0;
     }
+
+    /**
+     * ***********************************************************************
+     */
     /*Ativa ou desativa a edição nos textBoxs que 
      * exibem as informações dos animais */
 
@@ -304,8 +337,11 @@ public class GUI_Work extends javax.swing.JFrame {
         this.idadeAnimal_textBox.setEditable(flag);
         this.sexo_textBox.setEditable(flag);
     }
-    /*Limpa os textBoxs relativos aos animais*/
 
+    /**
+     * ***********************************************************************
+     */
+    /*Limpa os textBoxs relativos aos animais*/
     void animals_textBoxs_clearText() {
         this.nameAnimal_textBox.setText(null);
         this.alimentAnimal_textBox.setText(null);
@@ -314,6 +350,9 @@ public class GUI_Work extends javax.swing.JFrame {
         this.sexo_textBox.setText(null);
     }
 
+    /**
+     * ***********************************************************************
+     */
     void animal_texBoxs_loadValues(String s1, String s2, String s3, String s4, String s5) {
         System.out.println(s1 + ", " + s2 + ", " + s3 + ", " + s4 + ", " + s5);
         this.nameAnimal_textBox.setText(s1);
@@ -323,6 +362,9 @@ public class GUI_Work extends javax.swing.JFrame {
         this.alimentAnimal_textBox.setText(s5);
     }
 
+    /**
+     * ***********************************************************************
+     */
     void animal_progressBar_loadValues(int fome, int saude, int hig) {
         this.fome_progress.setValue(fome);
         this.saude_progress.setValue(saude);
@@ -332,29 +374,36 @@ public class GUI_Work extends javax.swing.JFrame {
     /**
      * *****************************************************************************
      * Rotinas para Funcionarios
- * ****************************************************************************/
+ * ***************************************************************************
+     */
     void load_funcList(int index) {
         this.modelFunc = new DefaultListModel<String>();
         //model.clear();
         //this.animal_ListBox.clearSelection();
-            for (int i = 0;i < Background.quadroF.size();i++) {
-                Funcionario a = Background.quadroF.get(i);
-                
-                if (index == this.VETERINARIOS && a instanceof Veterinario)
-                modelFunc.addElement(a.nome);
-                if (index == this.BIOLOGOS && a instanceof Biologo)
-                modelFunc.addElement(a.nome);
-                if (index == this.TRATADORES && a instanceof Tratador)
-                modelFunc.addElement(a.nome);
-                if (index == this.ZOOTECNICOS && a instanceof Zootecnico)
+        for (int i = 0; i < Background.quadroF.size(); i++) {
+            Funcionario a = Background.quadroF.get(i);
+
+            if (index == this.VETERINARIOS && a instanceof Veterinario) {
                 modelFunc.addElement(a.nome);
             }
- 
-        
+            if (index == this.BIOLOGOS && a instanceof Biologo) {
+                modelFunc.addElement(a.nome);
+            }
+            if (index == this.TRATADORES && a instanceof Tratador) {
+                modelFunc.addElement(a.nome);
+            }
+            if (index == this.ZOOTECNICOS && a instanceof Zootecnico) {
+                modelFunc.addElement(a.nome);
+            }
+        }
+
         this.func_listBox.setModel(modelFunc);
         this.func_listBox.setSelectedIndex(0);
     }
-    
+
+    /**
+     * ***********************************************************************
+     */
     void func_textBoxs_clearText() {
         this.nomeFn_textBox.setText(null);
         this.foneFn_textBox.setText(null);
@@ -362,6 +411,9 @@ public class GUI_Work extends javax.swing.JFrame {
         this.emailFn_textBox.setText(null);
     }
 
+    /**
+     * ***********************************************************************
+     */
     void func_texBoxs_loadValues(String s1, String s2, String s3, String s4, String s5) {
         System.out.println(s1 + ", " + s2 + ", " + s3 + ", " + s4 + ", " + s5);
         this.nomeFn_textBox.setText(s1);
@@ -369,23 +421,33 @@ public class GUI_Work extends javax.swing.JFrame {
         this.cpfFn_textBox.setText(s4);
         this.emailFn_textBox.setText(s3);
     }
-    
+
+    /**
+     * ***********************************************************************
+     */
     void func_textBoxs_setEditable(boolean flag) {
         this.nomeFn_textBox.setEditable(flag);
         this.foneFn_textBox.setEditable(flag);
         this.cpfFn_textBox.setEditable(flag);
         this.emailFn_textBox.setEditable(flag);
     }
+
+    /**
+     * ***********************************************************************
+     */
     public GUI_Work() {
         initComponents();
         //Problema aqui, não quer alterar o titulo
         //if (GUI_welcome.usuario != null) {
 
         //}
-        //setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); 
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         animals_textBoxs_setEditable(false);
     }
 
+    /**
+     * ***********************************************************************
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -420,8 +482,9 @@ public class GUI_Work extends javax.swing.JFrame {
         n_animais_label = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         actions_comboBox = new javax.swing.JComboBox();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        analise_textP = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
-        jComboBox4 = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         funcionarios_comboBox = new javax.swing.JComboBox();
@@ -438,6 +501,7 @@ public class GUI_Work extends javax.swing.JFrame {
         emailFn_textBox = new javax.swing.JTextField();
         cpfFn_textBox = new javax.swing.JTextField();
         horario_textBox = new javax.swing.JTextField();
+        jPanel9 = new javax.swing.JPanel();
 
         jLabel7.setText("jLabel7");
 
@@ -607,12 +671,19 @@ public class GUI_Work extends javax.swing.JFrame {
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Ações"));
 
-        actions_comboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alimentar", "Curar", "Limpar", "Adicionar", "Remover", "Editar" }));
+        actions_comboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alimentar", "Curar", "Limpar", "Analizar", "Adicionar", "Remover", "Editar" }));
+        actions_comboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                actions_comboBoxItemStateChanged(evt);
+            }
+        });
         actions_comboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actions_comboBoxActionPerformed(evt);
             }
         });
+
+        jScrollPane3.setViewportView(analise_textP);
 
         jButton1.setText("Ok");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -621,29 +692,26 @@ public class GUI_Work extends javax.swing.JFrame {
             }
         });
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carne", "Vegetais", "Frutas" }));
-        jComboBox4.setEnabled(false);
-
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(actions_comboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox4, 0, 227, Short.MAX_VALUE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(actions_comboBox, 0, 227, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(actions_comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -679,7 +747,7 @@ public class GUI_Work extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Funcionarios"));
 
-        funcionarios_comboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Veterinarios", "Tratadores", "Zootecnicos", "Biologo" }));
+        funcionarios_comboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Veterinarios", "Tratadores", "Zootecnicos", "Biologos" }));
         funcionarios_comboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 funcionarios_comboBoxActionPerformed(evt);
@@ -735,11 +803,10 @@ public class GUI_Work extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(nomeFn_textBox, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(foneFn_textBox)
-                        .addComponent(emailFn_textBox)
-                        .addComponent(cpfFn_textBox)
-                        .addComponent(horario_textBox, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))
+                    .addComponent(foneFn_textBox)
+                    .addComponent(emailFn_textBox)
+                    .addComponent(cpfFn_textBox)
+                    .addComponent(horario_textBox, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
                 .addGap(63, 63, 63))
         );
         jPanel7Layout.setVerticalGroup(
@@ -790,6 +857,19 @@ public class GUI_Work extends javax.swing.JFrame {
 
         jTabbedPane3.addTab("Funcionarios", jPanel2);
 
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 562, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 389, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3.addTab("Infra", jPanel9);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -808,12 +888,18 @@ public class GUI_Work extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+     * ***********************************************************************
+     */
+    /**
+     * ***********************************************************************
+     */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
         // Array com os nomes das colunas.
         load_animalList("Mamiferos");
         load_funcList(this.VETERINARIOS);
+        this.analise_textP.setEnabled(false);
+        this.jButton1.setEnabled(false);
         isOpened = true;
     }//GEN-LAST:event_formWindowOpened
 
@@ -832,20 +918,43 @@ public class GUI_Work extends javax.swing.JFrame {
 //      private int ADICIONAR   = 3;
 //      private int REMOVER     = 4;
 //      private int EDITAR      = 5;
+        this.jButton1.setEnabled(false);
         int index = actions_comboBox.getSelectedIndex();
-        if (index == ALIMENTAR) {
+        
+        if (index == ALIMENTAR &&
+                (GUI_welcome.usuario instanceof Tratador)&&
+                (GUI_welcome.usuario instanceof Zootecnico)) {
             this.animals_textBoxs_setEditable(false);
-        } else if (index == CURAR) {
+            this.jButton1.setEnabled(true);
+            
+        } else if (index == CURAR &&
+                (GUI_welcome.usuario instanceof Veterinario)) {
             this.animals_textBoxs_setEditable(false);
-        } else if (index == LIMPAR) {
+            this.jButton1.setEnabled(true);
+            
+        } else if (index == LIMPAR &&
+                (GUI_welcome.usuario instanceof Tratador)&&
+                (GUI_welcome.usuario instanceof Zootecnico)) {
             this.animals_textBoxs_setEditable(false);
+            this.jButton1.setEnabled(true);
+            
+        }else if (index == ANALIZAR&&
+                (GUI_welcome.usuario instanceof Biologo)) {
+            this.jButton1.setEnabled(true);
+            
         } else if (index == ADICIONAR) {
             this.animals_textBoxs_setEditable(true);
             //this.animals_textBoxs_clearText();
+            this.jButton1.setEnabled(true);
+            
         } else if (index == REMOVER) {
             this.animals_textBoxs_setEditable(false);
+            this.jButton1.setEnabled(true);
+            
         } else if (index == EDITAR) {
             this.animals_textBoxs_setEditable(true);
+            this.jButton1.setEnabled(true);
+            
         } else {
             System.out.println("???");
         }
@@ -856,23 +965,35 @@ public class GUI_Work extends javax.swing.JFrame {
         int index = actions_comboBox.getSelectedIndex();
         int sector = this.animal_comboBox.getSelectedIndex();
         int animal = this.animal_ListBox.getSelectedIndex();
-
+        String analise = "";
         if (index == ALIMENTAR) {
             animals_textBoxs_setEditable(false);
             //Alimenta um animal
             this.feed_animals(sector, animal);
+        
         } else if (index == CURAR) {
             animals_textBoxs_setEditable(false);
             //Cura um animal
             cure_animals(sector, animal);
+        
         } else if (index == LIMPAR) {
             animals_textBoxs_setEditable(false);
             //Limpa um animal
             wash_animals(sector, animal);
+       
+        } else if (index == ANALIZAR) {
+            animals_textBoxs_setEditable(true);
+            analise = this.analise_textP.getText();
+            if (create_animal("")) {
+                remove_animals(sector, animal);
+            }
+            load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
+            
         } else if (index == ADICIONAR) {
             animals_textBoxs_setEditable(true);
-            this.create_animal();
+            this.create_animal("");
             load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
+        
         } else if (index == REMOVER) {
             try {
                 animals_textBoxs_setEditable(false);
@@ -881,16 +1002,17 @@ public class GUI_Work extends javax.swing.JFrame {
             } catch (ArrayIndexOutOfBoundsException e) {
                 JOptionPane.showMessageDialog(null, "Não ha mais nada a excluir");
             }
+        
         } else if (index == EDITAR) {
             animals_textBoxs_setEditable(true);
-            if (create_animal()) {
+            if (create_animal("")) {
                 remove_animals(sector, animal);
             }
             load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
 
             this.animals_textBoxs_setEditable(false);
         } else {
-            System.out.println("???");
+            System.out.println("index");
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -955,13 +1077,27 @@ public class GUI_Work extends javax.swing.JFrame {
     private void func_listBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_func_listBoxMouseClicked
         this.func_textBoxs_clearText();
         int indexCombo = this.funcionarios_comboBox.getSelectedIndex();
-        int indexList = this.func_listBox.getSelectedIndex();
+        System.out.println(this.func_listBox.getSelectedValue().toString()+", "+indexCombo);
+        //int indexList = this.func_listBox.getSelectedIndex();
+        Funcionario func1 = Background.busca_funcionario(this.func_listBox.getSelectedValue().toString(),
+                this.funcionarios_comboBox.getItemAt(indexCombo).toString());
         this.func_textBoxs_clearText();
-//        this.func_texBoxs_loadValues(GUI_welcome.usuario.getNome(),
-//                ""+GUI_welcome.usuario.getTelefone(), //Conversão para string ""+int
-//                 ""+GUI_welcome.usuario.getCpf(), null);
-        
+        this.func_texBoxs_loadValues(func1.getNome(),
+                func1.getTelefone(), //Conversão para string ""+int
+                func1.getCpf(),
+                func1.getEmail(), "");
+
     }//GEN-LAST:event_func_listBoxMouseClicked
+
+    private void actions_comboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_actions_comboBoxItemStateChanged
+        int index = actions_comboBox.getSelectedIndex();
+        if(index == ANALIZAR){
+            this.analise_textP.setEnabled(true);
+        }
+        else{
+            this.analise_textP.setEnabled(false);
+        }
+    }//GEN-LAST:event_actions_comboBoxItemStateChanged
 
     public static void main(String args[]) {
         try {
@@ -993,6 +1129,7 @@ public class GUI_Work extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox actions_comboBox;
     private javax.swing.JTextField alimentAnimal_textBox;
+    private javax.swing.JTextPane analise_textP;
     private javax.swing.JList animal_ListBox;
     private javax.swing.JComboBox animal_comboBox;
     private javax.swing.JTextField cpfFn_textBox;
@@ -1006,7 +1143,6 @@ public class GUI_Work extends javax.swing.JFrame {
     private javax.swing.JTextField horario_textBox;
     private javax.swing.JTextField idadeAnimal_textBox;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox4;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -1029,8 +1165,10 @@ public class GUI_Work extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
@@ -1040,4 +1178,5 @@ public class GUI_Work extends javax.swing.JFrame {
     private javax.swing.JProgressBar saude_progress;
     private javax.swing.JTextField sexo_textBox;
     // End of variables declaration//GEN-END:variables
+
 }

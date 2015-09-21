@@ -11,15 +11,14 @@ package zoo;
  */
 public class Veterinario extends Funcionario{
     public Veterinario(String nome,String cpf, String email,
-			double salario, int carga_horaria, long telefone,String login) {
+			double salario, int carga_horaria, String telefone,String login) {
 		super(nome,cpf, email, salario, carga_horaria, telefone,login);
 		// TODO Auto-generated constructor stub
 	}
 
-	public int Recebe_salario() {
+	public int curar() {
 		// TODO Auto-generated method stub
-		return 8000;
+		return 10;
 	}
-	public void acumula_cargo(){}
     
 }

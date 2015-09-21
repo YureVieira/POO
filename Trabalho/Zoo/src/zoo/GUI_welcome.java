@@ -5,18 +5,27 @@
  */
 package zoo;
 
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
  * @author Micro
  */
 public class GUI_welcome extends javax.swing.JFrame {
+
     private Boolean login;
     static Funcionario usuario = null;
-    public void setLogin(boolean e){
+
+    public void setLogin(boolean e) {
         login = e;
     }
+
     /**
      * Creates new form JFrame
      */
@@ -24,8 +33,25 @@ public class GUI_welcome extends javax.swing.JFrame {
         initComponents();
         Background.criar_funcionarios();    //Criando todos os funcionarios
         Setores.init();                     //Criando todos os animais
+        
     }
 
+    
+
+    /**
+     * **********************************************************************
+     */
+    public int retornarDiaSemana(int ano, int mes, int dia) {
+
+        Calendar calendario = new GregorianCalendar(ano, mes - 1, dia);
+        int diaSemana = calendario.get(Calendar.DAY_OF_WEEK);
+
+        return diaSemana;
+    }
+
+    /**
+     * **********************************************************************
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,38 +109,42 @@ public class GUI_welcome extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        GUI_Login_Funcionarios win1 = new GUI_Login_Funcionarios(this,true);
+        GUI_Login_Funcionarios win1 = new GUI_Login_Funcionarios(this, true);
         win1.setVisible(true);
         System.out.println(win1.getCpf());
         System.out.println(win1.getPassword());
         System.out.println(win1.getFnc());
-        
+
         //Faz a busca e loga se usuario existir
-        int index = Background.busca_funcionario(win1.getCpf(),win1.getPassword(),win1.getFnc()) ;
+        int index = Background.busca_funcionario(win1.getCpf(), win1.getPassword(), win1.getFnc());
         //Segundo form
         GUI_Work winW = new GUI_Work();
-        if(index >= 0)
-        {
+        if (index >= 0) {
             Background.loginF(index);
-            System.out.println("Index = "+ index);
+            System.out.println("Index = " + index);
             usuario = Background.quadroF.get(index);//Atribui um usuario
-            if(usuario instanceof Biologo) winW.setTitle(usuario.getNome()+"<Biologo>");
-            if(usuario instanceof Veterinario) winW.setTitle(usuario.getNome()+"<Veterinario>");
-            if(usuario instanceof Tratador) winW.setTitle(usuario.getNome()+"<Tratador>");
-            if(usuario instanceof Zootecnico) winW.setTitle(usuario.getNome()+"<Zootecnico>");
-            JOptionPane.showMessageDialog(null,"Login efetuado com sucesso");  
-            
-        }
-        else{ 
-            JOptionPane.showMessageDialog(null,"Usuario não existe");
+            if (usuario instanceof Biologo) {
+                winW.setTitle(usuario.getNome() + "<Biologo>");
+            }
+            if (usuario instanceof Veterinario) {
+                winW.setTitle(usuario.getNome() + "<Veterinario>");
+            }
+            if (usuario instanceof Tratador) {
+                winW.setTitle(usuario.getNome() + "<Tratador>");
+            }
+            if (usuario instanceof Zootecnico) {
+                winW.setTitle(usuario.getNome() + "<Zootecnico>");
+            }
+            JOptionPane.showMessageDialog(null, "Login efetuado com sucesso");
+            winW.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario não existe");
             winW.setTitle("Desenvolvedor");
-        }        
-        
+        }
+
         //winW.setTitle("Logado");
-        winW.setVisible(true);
-        this.setVisible(false);
-        
-        
+        //this.setVisible(false);
         //this.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
