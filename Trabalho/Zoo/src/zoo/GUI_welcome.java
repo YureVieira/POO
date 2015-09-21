@@ -12,6 +12,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import static zoo.Tempo.agora;
+import static zoo.Tempo.dia;
+import static zoo.Tempo.timer_cicle;
 
 /**
  *
@@ -21,6 +24,10 @@ public class GUI_welcome extends javax.swing.JFrame {
 
     private Boolean login;
     static Funcionario usuario = null;
+    //variaveis relativas aos horarios
+    Timer timer;
+    String data, hora;
+    int dia;
 
     public void setLogin(boolean e) {
         login = e;
@@ -33,20 +40,70 @@ public class GUI_welcome extends javax.swing.JFrame {
         initComponents();
         Background.criar_funcionarios();    //Criando todos os funcionarios
         Setores.init();                     //Criando todos os animais
-        
+        //Timer pra ficar atualizando as horas
+        timer_cicle();
     }
 
-    
+    public void timer_cicle() {
+        ActionListener action = new ActionListener() {
+            public void actionPerformed(@SuppressWarnings("unused") java.awt.event.ActionEvent e) {
+                String data_ = "dd/MM/yyyy";
+                String hora_ = "HH:mm - a";
 
-    /**
-     * **********************************************************************
-     */
-    public int retornarDiaSemana(int ano, int mes, int dia) {
+                //Indetificar o dia da semanas
+                Calendar cal = Calendar.getInstance();
+                agora = cal.getTime();
+                SimpleDateFormat formata = new SimpleDateFormat(data_);
+                data = formata.format(agora);
+                formata = new SimpleDateFormat(hora_);
+                hora = formata.format(agora);
 
-        Calendar calendario = new GregorianCalendar(ano, mes - 1, dia);
-        int diaSemana = calendario.get(Calendar.DAY_OF_WEEK);
+                cal.setTime(agora);
+                dia = cal.get(Calendar.DAY_OF_WEEK);
+                //System.out.println(data + ", " + hora + ", " + getDiaString());
+                _setTitle(data + ", " + hora + ", (" + getDiaString()+")");
+            }
+        };
+        timer = new Timer(1000, action);
+        timer.start();
+    }
 
-        return diaSemana;
+    public void _setTitle(String str) {
+        this.setTitle(str);
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public String getDiaString() {
+        switch (dia) {
+            case 1:
+                return "domingo";
+            case 2:
+                return "segunda-feira";
+            case 3:
+                return "terça-feira";
+            case 4:
+                return "quarta-feira";
+            case 5:
+                return "quinta-feira";
+            case 6:
+                return "sexta-feira";
+            case 7:
+                return "sabado";
+            default:
+                return null;
+        }
+
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public String getHora() {
+        return hora;
     }
 
     /**
@@ -64,6 +121,7 @@ public class GUI_welcome extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -76,30 +134,50 @@ public class GUI_welcome extends javax.swing.JFrame {
         });
 
         jButton2.setText("Novo Visitante");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Visitante");
+
+        jButton4.setText("Agendar");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -139,14 +217,24 @@ public class GUI_welcome extends javax.swing.JFrame {
             winW.setVisible(true);
 
         } else {
-            JOptionPane.showMessageDialog(null, "Usuario não existe");
-            winW.setTitle("Desenvolvedor");
+            JOptionPane.showMessageDialog(null, "não foi possivel efetuar seu login");
+            //winW.setTitle("Desenvolvedor");//Nunca acontece
         }
 
         //winW.setTitle("Logado");
         //this.setVisible(false);
         //this.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+       GUI_visit_register win = new GUI_visit_register(this, true);
+       win.setVisible(true);
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+       GUI_buy_tickets win = new GUI_buy_tickets(this,true);
+       win.setVisible(true);
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -188,5 +276,6 @@ public class GUI_welcome extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 }
