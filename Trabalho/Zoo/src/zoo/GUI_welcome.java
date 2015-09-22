@@ -12,9 +12,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
-import static zoo.Tempo.agora;
-import static zoo.Tempo.dia;
-import static zoo.Tempo.timer_cicle;
 
 /**
  *
@@ -28,6 +25,7 @@ public class GUI_welcome extends javax.swing.JFrame {
     Timer timer;
     String data, hora;
     int dia;
+    Date agora = new Date();
 
     public void setLogin(boolean e) {
         login = e;
@@ -187,7 +185,7 @@ public class GUI_welcome extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        GUI_Login_Funcionarios win1 = new GUI_Login_Funcionarios(this, true);
+        GUI_Login_Worker win1 = new GUI_Login_Worker(this, true);
         win1.setVisible(true);
         System.out.println(win1.getCpf());
         System.out.println(win1.getPassword());

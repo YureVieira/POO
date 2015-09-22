@@ -9,7 +9,7 @@ package zoo;
  *
  * @author Micro
  */
-public class GUI_Login_Funcionarios extends java.awt.Dialog {
+public class GUI_Login_Worker extends java.awt.Dialog {
     String cpf;
     String password;
     String fnc;
@@ -28,7 +28,7 @@ public class GUI_Login_Funcionarios extends java.awt.Dialog {
     /**
      * Creates new form Login_Funcionarios
      */
-    public GUI_Login_Funcionarios(java.awt.Frame parent, boolean modal) {
+    public GUI_Login_Worker(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -180,7 +180,7 @@ public class GUI_Login_Funcionarios extends java.awt.Dialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                GUI_Login_Funcionarios dialog = new GUI_Login_Funcionarios(new java.awt.Frame(), true);
+                GUI_Login_Worker dialog = new GUI_Login_Worker(new java.awt.Frame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);

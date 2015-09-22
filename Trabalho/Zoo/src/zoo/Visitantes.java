@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Visitantes {
     static ArrayList<Visitante> cadastro_visitantes = new ArrayList<Visitante>();
+    
     static void addVisitante(Visitante v){
         cadastro_visitantes.add(v);
     }
@@ -25,4 +26,13 @@ public class Visitantes {
     static int getSize(){
         return cadastro_visitantes.size();
     }
+
+    public static ArrayList<Visitante> getCadastro_visitantes() {
+        return cadastro_visitantes;
+    }
+
+    public static void setCadastro_visitantes(ArrayList<Visitante> cadastro_visitantes) {
+        Visitantes.cadastro_visitantes = cadastro_visitantes;
+    }
+    
 }
