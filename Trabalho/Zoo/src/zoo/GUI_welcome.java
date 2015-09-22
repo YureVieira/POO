@@ -7,6 +7,7 @@ package zoo;
 
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -25,8 +26,7 @@ public class GUI_welcome extends javax.swing.JFrame {
     Timer timer;
     String data, hora;
     int dia;
-    Date agora = new Date();
-
+    Date agora = new Date();  
     public void setLogin(boolean e) {
         login = e;
     }
@@ -230,7 +230,7 @@ public class GUI_welcome extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-       GUI_buy_tickets win = new GUI_buy_tickets(this,true);
+       GUI_buy_tickets win = new GUI_buy_tickets();
        win.setVisible(true);
     }//GEN-LAST:event_jButton4MouseClicked
 

@@ -5,6 +5,7 @@
  */
 package zoo;
 
+import java.awt.Frame;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -19,15 +20,19 @@ public class GUI_search_visits extends java.awt.Dialog {
     /**
      * Creates new form GUI_search_visits
      */
-        ArrayList visitsIds = new ArrayList();    
-    ArrayList getVisitsArray(){
-        return visitsIds;
-    }
+//        ArrayList visitsIds = new ArrayList();  
+      GUI_buy_tickets parent;
+//    ArrayList getVisitsArray(){
+//        return visitsIds;
+//    }
     
     DefaultListModel modelo1,modelo2;
-    public GUI_search_visits(java.awt.Frame parent, boolean modal) {
+    public GUI_search_visits(Frame parent,boolean modal) {
         super(parent, modal);
         initComponents();
+        this.parent = (GUI_buy_tickets)parent;
+        this.setResizable(false);
+       this.parent.visitsIds.clear();
     }
 
     /**
@@ -43,6 +48,7 @@ public class GUI_search_visits extends java.awt.Dialog {
         jList1 = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
 
+        setModal(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -56,6 +62,11 @@ public class GUI_search_visits extends java.awt.Dialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Visitantes"));
 
         jList1.setDropMode(javax.swing.DropMode.ON);
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jButton1.setText("Selecionar");
@@ -121,28 +132,47 @@ public class GUI_search_visits extends java.awt.Dialog {
         modelo1 = new DefaultListModel();
 //        this.jList1 = new JList(modelo);
         try {
+            if(Visitantes.cadastro_visitantes.size()>0){
             for (Visitante v : Visitantes.cadastro_visitantes) {
                 modelo1.addElement(v.nome);
             }
             this.jList1.setModel(modelo1);
+            }
+            else{
+                int resp = JOptionPane.showConfirmDialog(this,"Sem visitantes cadastrados","Falha",2);
+                if(resp > -2)this.dispose();
+            } 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Sem visitantes cadastrados");
-            this.dispose();
+            int resp = JOptionPane.showConfirmDialog(this,"Sem visitantes cadastrados","Falha",2);
+                if(resp > -2)this.dispose();
         }
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        int choice = this.jList1.getSelectedIndex();
+       
 //        modelo2.addElement(modelo1.get(choice).toString());
 //        this.jList2.setModel(modelo2);
         try{
-        modelo1.remove(choice);
-        this.jList1.setModel(modelo1);
-        this.visitsIds.add(choice);
+        int choice = this.jList1.getSelectedIndex();
+        //modelo1.remove(choice);
+        //this.jList1.setModel(modelo1);
+         parent.visitsIds.add(choice);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Nenhum visitante selecionado");
         }
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        if (evt.getClickCount() == 2){   
+        try{
+        int choice = this.jList1.getSelectedIndex();
+        parent.visitsIds.add(choice);
+        JOptionPane.showMessageDialog(null, "Usuario adicionado");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Nenhum visitante selecionado");
+        }
+        }
+    }//GEN-LAST:event_jList1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -150,7 +180,7 @@ public class GUI_search_visits extends java.awt.Dialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                GUI_search_visits dialog = new GUI_search_visits(new java.awt.Frame(), true);
+                GUI_search_visits dialog = new GUI_search_visits(new Frame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);

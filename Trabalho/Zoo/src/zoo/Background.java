@@ -22,6 +22,8 @@ public class Background {
         static Funcionario usuarioF = new Funcionario();
 	static boolean acesso_funcionario = false;
 	
+        static ArrayList<Visita> visitas = new ArrayList<Visita>();
+        
         public Background(){}
 
 	public static int busca_funcionario(String cpf, String senha,String func) {
