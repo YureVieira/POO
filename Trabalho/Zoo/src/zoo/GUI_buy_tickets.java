@@ -233,88 +233,91 @@ public class GUI_buy_tickets extends javax.swing.JFrame {
         int diaDaSemana;
         boolean combo = false, full_time = false;
         
-        if(this.jList1.getModel().getSize()>0){
-        data = this.data_tf.getText();
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            Date diaUtil = sdf.parse(data);
-            GregorianCalendar gc = new GregorianCalendar();
-            gc.setTime(diaUtil);
-            diaDaSemana = gc.get(GregorianCalendar.DAY_OF_WEEK);
-        } catch (ParseException ex) {
-            Logger.getLogger(GUI_buy_tickets.class.getName()).log(Level.SEVERE, null, ex);
-            return;
-        }
-
-        data = data.replace("/", "");
-        dia = Integer.parseInt(data.substring(0, 2));
-        mes = Integer.parseInt(data.substring(2, 4));
-        ano = Integer.parseInt(data.substring(4, 8));
-
-        if (dia > 31 || mes > 12 || dia == 0 || mes == 0) {
-            JOptionPane.showMessageDialog(null, "Data invalida");
-            return;
-        } else if ((mes == 2 || mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia == 31) {
-            JOptionPane.showMessageDialog(null, "Data invalida");
-            return;
-        } else if ((ano % 4 == 0) && mes == 2 && dia > 29) {
-            JOptionPane.showMessageDialog(null, "Data invalida(Ano bissexto)");
-            return;
-        } else if ((ano % 4 != 0) && mes == 2 && dia > 28) {
-            JOptionPane.showMessageDialog(null, "Data invalida(Ano não bissexto)");
-            return;
-        } else if (diaDaSemana == 1) {
-            JOptionPane.showMessageDialog(null, "O zoologico é fechado aos domingos");
-            return;
-        }
-
-        int index = this.horario_cb.getSelectedIndex();
-
-        if (index == 0) {
-            hora = 8;
-            hora_sair = 12;
-        } else if (index == 1) {
-            hora = 12;
-            hora_sair = 16;
-        } else {
-            hora = 8;
-            hora_sair = 16;
-        }
-        if (this.combo_cb.getModel().getSelectedItem().equals("Normal")) {
-            if (hora_sair - hora == 4) {
-                combo = false;
-                full_time = false;
-            } else {
-                combo = false;
-                full_time = true;
-            }
-        }
-        if(this.combo_cb.getModel().getSelectedItem().equals("Combo Familia")){
-            if(this.jList1.getModel().getSize() < 3){
-                JOptionPane.showMessageDialog(null, "Combo familia somente para grupos de 3 pessoas");
+        if (this.jList1.getModel().getSize() > 0) {
+            data = this.data_tf.getText();
+            
+            
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                Date diaUtil = sdf.parse(data);
+                GregorianCalendar gc = new GregorianCalendar();
+                gc.setTime(diaUtil);
+                diaDaSemana = gc.get(GregorianCalendar.DAY_OF_WEEK);
+            } catch (ParseException ex) {
+                Logger.getLogger(GUI_buy_tickets.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
-            if (hora_sair - hora == 4) {
-                combo = true;
-                full_time = false;
-            } else {
-                combo = true;
-                full_time = true;
-            }
-        }
 
-        visita.setAno(ano);
-        visita.setMes(mes);
-        visita.setDia(dia);
-        visita.setHora(hora);
-        visita.setHora_sair(hora_sair);
-        String ID = visita.compute(combo, full_time);
-        if(JOptionPane.showConfirmDialog(this,"Ingresso para " + this.jList1.getModel().getSize()+
-                " pessoas lhe custara R$" + visita.getValor(),"Deseja pagar por isso?",2)==0){
-            Background.visitas.add(visita);
-            JOptionPane.showInputDialog(this, "Guarde seu id para fazer a visita futuramente", ID);
-        }
+            String _data = data.replace("/", "");
+            dia = Integer.parseInt(_data.substring(0, 2));
+            mes = Integer.parseInt(_data.substring(2, 4));
+            ano = Integer.parseInt(_data.substring(4, 8));
+
+            if (dia > 31 || mes > 12 || dia == 0 || mes == 0) {
+                JOptionPane.showMessageDialog(null, "Data invalida");
+                return;
+            } else if ((mes == 2 || mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia == 31) {
+                JOptionPane.showMessageDialog(null, "Data invalida");
+                return;
+            } else if ((ano % 4 == 0) && mes == 2 && dia > 29) {
+                JOptionPane.showMessageDialog(null, "Data invalida(Ano bissexto)");
+                return;
+            } else if ((ano % 4 != 0) && mes == 2 && dia > 28) {
+                JOptionPane.showMessageDialog(null, "Data invalida(Ano não bissexto)");
+                return;
+            } else if (diaDaSemana == 1) {
+                JOptionPane.showMessageDialog(null, "O zoologico é fechado aos domingos");
+                return;
+            }
+
+            int index = this.horario_cb.getSelectedIndex();
+
+            if (index == 0) {
+                hora = 8;
+                hora_sair = 12;
+            } else if (index == 1) {
+                hora = 12;
+                hora_sair = 16;
+            } else {
+                hora = 8;
+                hora_sair = 16;
+            }
+            if (this.combo_cb.getModel().getSelectedItem().equals("Normal")) {
+                if (hora_sair - hora == 4) {
+                    combo = false;
+                    full_time = false;
+                } else {
+                    combo = false;
+                    full_time = true;
+                }
+            }
+            if (this.combo_cb.getModel().getSelectedItem().equals("Combo Familia")) {
+                if (this.jList1.getModel().getSize() < 3) {
+                    JOptionPane.showMessageDialog(null, "Combo familia somente para grupos de 3 pessoas");
+                    return;
+                }
+                if (hora_sair - hora == 4) {
+                    combo = true;
+                    full_time = false;
+                } else {
+                    combo = true;
+                    full_time = true;
+                }
+            }
+
+            visita.setAno(ano);
+            visita.setMes(mes);
+            visita.setDia(dia);
+            visita.setHora(hora);
+            visita.setHora_sair(hora_sair);
+            visita.setData(data);
+            String ID = visita.compute(combo, full_time);
+//            JOptionPane.showConfirmDialog(this, data);
+            if (JOptionPane.showConfirmDialog(this, "Ingresso para " + this.jList1.getModel().getSize()
+                    + " pessoas lhe custara R$" + visita.getValor(), "Deseja pagar por isso?", 2) == 0) {
+                Background.visitas.add(visita);
+                JOptionPane.showInputDialog(this, "Guarde seu id para fazer a visita futuramente", ID);
+            }
         }
     }//GEN-LAST:event_jButton2MouseClicked
 

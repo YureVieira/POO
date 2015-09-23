@@ -5,6 +5,8 @@
  */
 package zoo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Micro
@@ -15,6 +17,7 @@ public class Funcionario extends Pessoa{
 	int carga_horaria;
 	String telefone;
         String login;
+        ArrayList<String> setores;
 //	Time horaDeChegar;
 //	Time horaDeSair;
 
@@ -29,6 +32,7 @@ public class Funcionario extends Pessoa{
 		this.carga_horaria = carga_horaria;
 		this.telefone = telefone;
                 this.login = login;
+                setores = new ArrayList<String>();
 	}
         public Funcionario(){
             super("","","");

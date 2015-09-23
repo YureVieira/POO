@@ -46,16 +46,16 @@ public class GUI_search_visits extends java.awt.Dialog {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
 
         setModal(true);
         setResizable(false);
+        setTitle("Lista de visitantes");
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                closeDialog(evt);
-            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                closeDialog(evt);
             }
         });
 
@@ -69,33 +69,20 @@ public class GUI_search_visits extends java.awt.Dialog {
         });
         jScrollPane1.setViewportView(jList1);
 
-        jButton1.setText("Selecionar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -148,29 +135,15 @@ public class GUI_search_visits extends java.awt.Dialog {
         }
     }//GEN-LAST:event_formWindowOpened
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-       
-//        modelo2.addElement(modelo1.get(choice).toString());
-//        this.jList2.setModel(modelo2);
-        try{
-        int choice = this.jList1.getSelectedIndex();
-        //modelo1.remove(choice);
-        //this.jList1.setModel(modelo1);
-         parent.visitsIds.add(choice);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Nenhum visitante selecionado");
-        }
-    }//GEN-LAST:event_jButton1MouseClicked
-
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        if (evt.getClickCount() == 2){   
-        try{
-        int choice = this.jList1.getSelectedIndex();
-        parent.visitsIds.add(choice);
-        JOptionPane.showMessageDialog(null, "Usuario adicionado");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Nenhum visitante selecionado");
-        }
+        if (evt.getClickCount() == 2) {
+            try {
+                int choice = this.jList1.getSelectedIndex();
+                parent.visitsIds.add(choice);
+                JOptionPane.showMessageDialog(null, "Usuario adicionado");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Nenhum visitante selecionado");
+            }
         }
     }//GEN-LAST:event_jList1MouseClicked
 
@@ -193,7 +166,6 @@ public class GUI_search_visits extends java.awt.Dialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -34,11 +34,11 @@ public class Visita {
         }
         
         //Gerar um ID
-        String data_ = "dd/MM/yyyy";
-        SimpleDateFormat formata = new SimpleDateFormat(data_);
+        String data1 = "dd/MM/yyyy";
+        SimpleDateFormat formata = new SimpleDateFormat(data1);
        
         Date d = new Date();
-        data = formata.format(d);
+//        data1 = formata.format(d);
         
         Calendar cal = new GregorianCalendar();
         long agora = d.getTime();

@@ -43,9 +43,8 @@ public class GUI_Work extends javax.swing.JFrame {
 
     DefaultListModel<String> model;
     DefaultListModel<String> modelFunc;
-    
-    Frame parent;
 
+//    Frame parent;
     /**
      * *****************************************************************************
      * Rotinas para animais
@@ -121,7 +120,7 @@ public class GUI_Work extends javax.swing.JFrame {
     /**
      * ***********************************************************************
      */
-    void add_animals(String str, String nome, String especie, int sexo, String tipo_alimentacao, int idade,String analise) {
+    void add_animals(String str, String nome, String especie, int sexo, String tipo_alimentacao, int idade, String analise) {
         this.model = new DefaultListModel<String>();
         if (str.equals("Mamiferos")) {
             Setores.setorM.add(new Mamifero(nome, especie, sexo, tipo_alimentacao, idade, analise));
@@ -145,7 +144,7 @@ public class GUI_Work extends javax.swing.JFrame {
     /**
      * ***********************************************************************
      */
-    void add_animals(int sector, String nome, String especie, int sexo, String tipo_alimentacao, int idade,String analise) {
+    void add_animals(int sector, String nome, String especie, int sexo, String tipo_alimentacao, int idade, String analise) {
         this.model = new DefaultListModel<String>();
         if (sector == this.MAMIFEROS) {
             Setores.setorM.add(new Mamifero(nome, especie, sexo, tipo_alimentacao, idade, analise));
@@ -332,7 +331,6 @@ public class GUI_Work extends javax.swing.JFrame {
      */
     /*Ativa ou desativa a edição nos textBoxs que 
      * exibem as informações dos animais */
-
     private void animals_textBoxs_setEditable(boolean flag) {
         this.nameAnimal_textBox.setEditable(flag);
         this.alimentAnimal_textBox.setEditable(flag);
@@ -377,7 +375,7 @@ public class GUI_Work extends javax.swing.JFrame {
     /**
      * *****************************************************************************
      * Rotinas para Funcionarios
- * ***************************************************************************
+     * ***************************************************************************
      */
     void load_funcList(int index) {
         this.modelFunc = new DefaultListModel<String>();
@@ -410,8 +408,8 @@ public class GUI_Work extends javax.swing.JFrame {
     void func_textBoxs_clearText() {
         this.nomeFn_textBox.setText(null);
         this.foneFn_textBox.setText(null);
-        this.cpfFn_textBox.setText(null);
         this.emailFn_textBox.setText(null);
+        this.CPFfn_textBox.setText(null);
     }
 
     /**
@@ -421,8 +419,8 @@ public class GUI_Work extends javax.swing.JFrame {
         System.out.println(s1 + ", " + s2 + ", " + s3 + ", " + s4 + ", " + s5);
         this.nomeFn_textBox.setText(s1);
         this.foneFn_textBox.setText(s2);
-        this.cpfFn_textBox.setText(s4);
-        this.emailFn_textBox.setText(s3);
+        this.emailFn_textBox.setText(s4);
+        this.CPFfn_textBox.setText(s3);
     }
 
     /**
@@ -431,8 +429,8 @@ public class GUI_Work extends javax.swing.JFrame {
     void func_textBoxs_setEditable(boolean flag) {
         this.nomeFn_textBox.setEditable(flag);
         this.foneFn_textBox.setEditable(flag);
-        this.cpfFn_textBox.setEditable(flag);
         this.emailFn_textBox.setEditable(flag);
+        this.CPFfn_textBox.setEditable(flag);
     }
 
     /**
@@ -444,13 +442,16 @@ public class GUI_Work extends javax.swing.JFrame {
         //if (GUI_welcome.usuario != null) {
 
         //}
-        this.parent = parent;
+//        this.parent = parent;
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         animals_textBoxs_setEditable(false);
         this.jPanel8.setVisible(!GUI_welcome.isVisita);
-        this.tabs.setEnabledAt(2,GUI_welcome.isVisita);
-        if(GUI_welcome.isVisita)System.out.println("É uma visita");
-        else System.out.println("Não é uma visita");
+        this.tabs.setEnabledAt(2, GUI_welcome.isVisita);
+        if (GUI_welcome.isVisita) {
+            System.out.println("É uma visita");
+        } else {
+            System.out.println("Não é uma visita");
+        }
     }
 
     /**
@@ -506,8 +507,8 @@ public class GUI_Work extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         nomeFn_textBox = new javax.swing.JTextField();
         foneFn_textBox = new javax.swing.JTextField();
+        CPFfn_textBox = new javax.swing.JTextField();
         emailFn_textBox = new javax.swing.JTextField();
-        cpfFn_textBox = new javax.swing.JTextField();
         horario_textBox = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
 
@@ -790,11 +791,14 @@ public class GUI_Work extends javax.swing.JFrame {
 
         jLabel13.setText("Telefone");
 
-        jLabel14.setText("Email");
+        jLabel14.setText("CPF");
 
-        jLabel15.setText("CPF");
+        jLabel15.setText("Email");
 
         jLabel16.setText("Horario");
+        jLabel16.setEnabled(false);
+
+        horario_textBox.setEnabled(false);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -812,8 +816,8 @@ public class GUI_Work extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(nomeFn_textBox, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                     .addComponent(foneFn_textBox)
+                    .addComponent(CPFfn_textBox)
                     .addComponent(emailFn_textBox)
-                    .addComponent(cpfFn_textBox)
                     .addComponent(horario_textBox, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
                 .addGap(63, 63, 63))
         );
@@ -830,11 +834,11 @@ public class GUI_Work extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(emailFn_textBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CPFfn_textBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(cpfFn_textBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(emailFn_textBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
@@ -903,18 +907,51 @@ public class GUI_Work extends javax.swing.JFrame {
      * ***********************************************************************
      */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // Array com os nomes das colunas.
+        // Exibir o primeiro setor que ele tem acesso
+        if (GUI_welcome.usuario instanceof Tratador) {
+            System.out.println(GUI_welcome.usuario.setores.size());
+            load_animalList(GUI_welcome.usuario.setores.get(0));
+            load_funcList(this.TRATADORES);
+        }
+
         load_animalList("Mamiferos");
         load_funcList(this.VETERINARIOS);
+
+        //Esconder cpf dos funcionarios para os visitantes
+        if (this.getTitle().equals("Visita")) {
+            this.CPFfn_textBox.setVisible(false);
+            this.jLabel14.setVisible(false);
+        } else {
+            this.CPFfn_textBox.setVisible(true);
+            this.jLabel14.setVisible(true);
+        }
+
         this.analise_textP.setEnabled(false);
         this.jButton1.setEnabled(false);
         isOpened = true;
     }//GEN-LAST:event_formWindowOpened
 
     private void animal_comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animal_comboBoxActionPerformed
-        // TODO add your handling code here:
-        int index = this.animal_comboBox.getSelectedIndex();
-        load_animalList(animal_comboBox.getItemAt(index).toString());
+
+        int index = this.animal_comboBox.getSelectedIndex();//Indice do combobox
+        String classAnimal = animal_comboBox.getItemAt(index).toString();//String para esse indice
+
+        //Se encontrar nos setores um com o mesmo nome do selecionado
+        if (GUI_welcome.usuario instanceof Tratador) {
+            if (GUI_welcome.usuario.setores.indexOf(classAnimal) != -1) {
+                load_animalList(classAnimal);
+            } else {
+                JOptionPane.showMessageDialog(this, "Esse setor não é de sua responsabilidade");
+                //Tentar limpar o listBox
+                DefaultListModel aux = new DefaultListModel();
+                aux.clear();
+                this.animal_ListBox.removeAll();
+                this.animal_ListBox.setModel(aux);
+                return;
+            }
+        }
+
+        load_animalList(classAnimal);
         System.out.println("Ok");
     }//GEN-LAST:event_animal_comboBoxActionPerformed
 
@@ -926,44 +963,44 @@ public class GUI_Work extends javax.swing.JFrame {
 //      private int ADICIONAR   = 3;
 //      private int REMOVER     = 4;
 //      private int EDITAR      = 5;
-        
+
         this.jButton1.setEnabled(false);
         int index = actions_comboBox.getSelectedIndex();
-        
-        if (index == ALIMENTAR &&
-                (GUI_welcome.usuario instanceof Tratador)&&
-                (GUI_welcome.usuario instanceof Zootecnico)) {
+
+        if (index == ALIMENTAR
+                && ((GUI_welcome.usuario instanceof Tratador)
+                || (GUI_welcome.usuario instanceof Zootecnico))) {
             this.animals_textBoxs_setEditable(false);
             this.jButton1.setEnabled(true);
-            
-        } else if (index == CURAR &&
-                (GUI_welcome.usuario instanceof Veterinario)) {
+
+        } else if (index == CURAR
+                && (GUI_welcome.usuario instanceof Veterinario)) {
             this.animals_textBoxs_setEditable(false);
             this.jButton1.setEnabled(true);
-            
-        } else if (index == LIMPAR &&
-                (GUI_welcome.usuario instanceof Tratador)&&
-                (GUI_welcome.usuario instanceof Zootecnico)) {
+
+        } else if (index == LIMPAR
+                && ((GUI_welcome.usuario instanceof Tratador)
+                || (GUI_welcome.usuario instanceof Zootecnico))) {
             this.animals_textBoxs_setEditable(false);
             this.jButton1.setEnabled(true);
-            
-        }else if (index == ANALIZAR&&
-                (GUI_welcome.usuario instanceof Biologo)) {
+
+        } else if (index == ANALIZAR
+                && (GUI_welcome.usuario instanceof Biologo)) {
             this.jButton1.setEnabled(true);
-            
+
         } else if (index == ADICIONAR) {
             this.animals_textBoxs_setEditable(true);
             //this.animals_textBoxs_clearText();
             this.jButton1.setEnabled(true);
-            
+
         } else if (index == REMOVER) {
             this.animals_textBoxs_setEditable(false);
             this.jButton1.setEnabled(true);
-            
+
         } else if (index == EDITAR) {
             this.animals_textBoxs_setEditable(true);
             this.jButton1.setEnabled(true);
-            
+
         } else {
             System.out.println("???");
         }
@@ -975,57 +1012,84 @@ public class GUI_Work extends javax.swing.JFrame {
         int sector = this.animal_comboBox.getSelectedIndex();
         int animal = this.animal_ListBox.getSelectedIndex();
         String analise = "";
-        if (index == ALIMENTAR) {
-            animals_textBoxs_setEditable(false);
-            //Alimenta um animal
-            this.feed_animals(sector, animal);
-        
-        } else if (index == CURAR) {
-            animals_textBoxs_setEditable(false);
-            //Cura um animal
-            cure_animals(sector, animal);
-        
-        } else if (index == LIMPAR) {
-            animals_textBoxs_setEditable(false);
-            //Limpa um animal
-            wash_animals(sector, animal);
-       
-        } else if (index == ANALIZAR) {
-            animals_textBoxs_setEditable(true);
-            analise = this.analise_textP.getText();
-            if (create_animal("")) {
-                remove_animals(sector, animal);
-            }
-            load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
-            
-        } else if (index == ADICIONAR) {
-            animals_textBoxs_setEditable(true);
-            this.create_animal("");
-            load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
-        
-        } else if (index == REMOVER) {
-            try {
+        try {
+            if (index == ALIMENTAR) {
                 animals_textBoxs_setEditable(false);
-                remove_animals(sector, animal);
-                load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
-            } catch (ArrayIndexOutOfBoundsException e) {
-                JOptionPane.showMessageDialog(null, "Não ha mais nada a excluir");
-            }
-        
-        } else if (index == EDITAR) {
-            animals_textBoxs_setEditable(true);
-            if (create_animal("")) {
-                remove_animals(sector, animal);
-            }
-            load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
+                //Alimenta um animal
+                this.feed_animals(sector, animal);
 
-            this.animals_textBoxs_setEditable(false);
-        } else {
-            System.out.println("index");
+            } else if (index == CURAR) {
+                animals_textBoxs_setEditable(false);
+                //Cura um animal
+                cure_animals(sector, animal);
+
+            } else if (index == LIMPAR) {
+                animals_textBoxs_setEditable(false);
+                //Limpa um animal
+                wash_animals(sector, animal);
+
+            } else if (index == ANALIZAR) {
+                animals_textBoxs_setEditable(true);
+                analise = this.analise_textP.getText();
+                if (create_animal("")) {
+                    remove_animals(sector, animal);
+                }
+                load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
+
+            } else if (index == ADICIONAR) {
+                animals_textBoxs_setEditable(true);
+                this.create_animal("");
+                load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
+
+            } else if (index == REMOVER) {
+                try {
+                    int resp;
+                    resp = JOptionPane.showConfirmDialog(this, "Deseja excluir este animal",
+                            "Aviso", 2);
+                    if (resp < 0 || resp > 0) {
+                        return;//Escolhas(cancel/close)
+                    }
+                    animals_textBoxs_setEditable(false);
+                    remove_animals(sector, animal);
+                    load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    JOptionPane.showMessageDialog(null, "Não ha mais nada a excluir");
+                }
+
+            } else if (index == EDITAR) {
+                animals_textBoxs_setEditable(true);
+                if (create_animal("")) {
+                    remove_animals(sector, animal);
+                }
+                load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox
+
+                this.animals_textBoxs_setEditable(false);
+            } else {
+                System.out.println("index");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Opção indisponivel!");
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void animal_ListBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_animal_ListBoxMouseClicked
+        if (evt.getClickCount() == 2) {
+            try {
+                int choice = this.animal_ListBox.getSelectedIndex();
+                int combo = this.animal_comboBox.getSelectedIndex();
+                String text = "";
+                if(combo == 0)text = Setores.setorM.get(choice).getMsg();
+                if(combo == 1)text = Setores.setorAv.get(choice).getMsg();
+                if(combo == 2)text = Setores.setorR.get(choice).getMsg();
+                if(combo == 3)text = Setores.setorAn.get(choice).getMsg();
+                if(combo == 4)text = Setores.setorI.get(choice).getMsg();
+                text = text.replace(".", ".\n");
+                JOptionPane.showMessageDialog(null, text);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro de indexação");
+            }
+        }
+        /*fluxo Normal*/
         if (isOpened == true) {
             try {
                 this.animals_textBoxs_clearText();
@@ -1070,6 +1134,7 @@ public class GUI_Work extends javax.swing.JFrame {
 
             } catch (Exception e) {                     //Erros gerais
                 System.err.println("Erro " + e);
+                this.jButton1.setEnabled(false);
             }
         }
     }//GEN-LAST:event_animal_ListBoxMouseClicked
@@ -1086,7 +1151,7 @@ public class GUI_Work extends javax.swing.JFrame {
     private void func_listBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_func_listBoxMouseClicked
         this.func_textBoxs_clearText();
         int indexCombo = this.funcionarios_comboBox.getSelectedIndex();
-        System.out.println(this.func_listBox.getSelectedValue().toString()+", "+indexCombo);
+        System.out.println(this.func_listBox.getSelectedValue().toString() + ", " + indexCombo);
         //int indexList = this.func_listBox.getSelectedIndex();
         Funcionario func1 = Background.busca_funcionario(this.func_listBox.getSelectedValue().toString(),
                 this.funcionarios_comboBox.getItemAt(indexCombo).toString());
@@ -1100,10 +1165,9 @@ public class GUI_Work extends javax.swing.JFrame {
 
     private void actions_comboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_actions_comboBoxItemStateChanged
         int index = actions_comboBox.getSelectedIndex();
-        if(index == ANALIZAR){
+        if (index == ANALIZAR) {
             this.analise_textP.setEnabled(true);
-        }
-        else{
+        } else {
             this.analise_textP.setEnabled(false);
         }
     }//GEN-LAST:event_actions_comboBoxItemStateChanged
@@ -1136,12 +1200,12 @@ public class GUI_Work extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CPFfn_textBox;
     private javax.swing.JComboBox actions_comboBox;
     private javax.swing.JTextField alimentAnimal_textBox;
     private javax.swing.JTextPane analise_textP;
     private javax.swing.JList animal_ListBox;
     private javax.swing.JComboBox animal_comboBox;
-    private javax.swing.JTextField cpfFn_textBox;
     private javax.swing.JTextField emailFn_textBox;
     private javax.swing.JTextField especie_textBox;
     private javax.swing.JProgressBar fome_progress;

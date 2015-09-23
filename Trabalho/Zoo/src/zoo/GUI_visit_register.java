@@ -47,6 +47,7 @@ public class GUI_visit_register extends java.awt.Dialog {
 
         setName("Cadastro de Visitantes"); // NOI18N
         setResizable(false);
+        setTitle("Cadastro de visitantes");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
@@ -55,9 +56,9 @@ public class GUI_visit_register extends java.awt.Dialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro"));
 
-        jLabel1.setText("Nome");
+        jLabel1.setText("Nome*");
 
-        jLabel2.setText("Idade");
+        jLabel2.setText("Idade*");
 
         jLabel3.setText("Cpf");
 
@@ -93,15 +94,14 @@ public class GUI_visit_register extends java.awt.Dialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(email_tb)
                             .addComponent(objetivo_cb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(endereco_tb)
                             .addComponent(nome_tb)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -112,7 +112,7 @@ public class GUI_visit_register extends java.awt.Dialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 72, Short.MAX_VALUE))
+                .addGap(0, 51, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +139,6 @@ public class GUI_visit_register extends java.awt.Dialog {
                 .addComponent(jLabel5)
                 .addGap(1, 1, 1)
                 .addComponent(email_tb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
@@ -154,7 +153,7 @@ public class GUI_visit_register extends java.awt.Dialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(objetivo_cb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -174,23 +173,26 @@ public class GUI_visit_register extends java.awt.Dialog {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // public Visitante(String nome, String cpf, String email, int idade, String endereco, String objetivo) {
-            try{
-                int idade = Integer.parseInt(this.idade_tb.getText());
-                //Adicionando ao cadastro
+        try {
+            int idade = Integer.parseInt(this.idade_tb.getText());
+            //Adicionando ao cadastro
+            if (this.nome_tb.getText().length() > 1) {
                 Visitantes.addVisitante(new Visitante(this.nome_tb.getText(),
-                    this.cpf_tb.getText(),
-                    this.email_tb.getText(),
-                    idade,
-                    this.endereco_tb.getText(),
-                    this.objetivo_cb.getSelectedItem().toString()));
-            JOptionPane.showMessageDialog(null, "Visitante cadastrado");
-            JOptionPane.showMessageDialog(null, "Pessoas cadastradas = "+ Visitantes.getSize());
-            this.dispose();
-        }
-        catch(Exception e){
+                        this.cpf_tb.getText(),
+                        this.email_tb.getText(),
+                        idade,
+                        this.endereco_tb.getText(),
+                        this.objetivo_cb.getSelectedItem().toString()));
+                JOptionPane.showMessageDialog(null, "Visitante cadastrado");
+                JOptionPane.showMessageDialog(null, "Pessoas cadastradas = " + Visitantes.getSize());
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Campo 'Nome' obrigarorio");
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Campo idade preenchido incorretamente");
         }
-        
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

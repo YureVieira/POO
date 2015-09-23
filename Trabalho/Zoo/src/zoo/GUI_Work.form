@@ -582,8 +582,8 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="nomeFn_textBox" pref="135" max="32767" attributes="0"/>
                               <Component id="foneFn_textBox" max="32767" attributes="0"/>
+                              <Component id="CPFfn_textBox" max="32767" attributes="0"/>
                               <Component id="emailFn_textBox" max="32767" attributes="0"/>
-                              <Component id="cpfFn_textBox" max="32767" attributes="0"/>
                               <Component id="horario_textBox" pref="135" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
@@ -605,12 +605,12 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="emailFn_textBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CPFfn_textBox" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cpfFn_textBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="emailFn_textBox" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -635,28 +635,32 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel14">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Email"/>
+                    <Property name="text" type="java.lang.String" value="CPF"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel15">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="CPF"/>
+                    <Property name="text" type="java.lang.String" value="Email"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel16">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Horario"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="nomeFn_textBox">
                 </Component>
                 <Component class="javax.swing.JTextField" name="foneFn_textBox">
                 </Component>
+                <Component class="javax.swing.JTextField" name="CPFfn_textBox">
+                </Component>
                 <Component class="javax.swing.JTextField" name="emailFn_textBox">
                 </Component>
-                <Component class="javax.swing.JTextField" name="cpfFn_textBox">
-                </Component>
                 <Component class="javax.swing.JTextField" name="horario_textBox">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
