@@ -1031,7 +1031,7 @@ public class GUI_Work extends javax.swing.JFrame {
             } else if (index == ANALIZAR) {
                 animals_textBoxs_setEditable(true);
                 analise = this.analise_textP.getText();
-                if (create_animal("")) {
+                if (create_animal(analise)) {
                     remove_animals(sector, animal);
                 }
                 load_animalList(this.animal_comboBox.getSelectedIndex());//Atualiza o listBox

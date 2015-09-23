@@ -144,7 +144,7 @@ public class GUI_welcome extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jButton1.setText("Funcionario");
+        jButton1.setText("Funcionarios");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -158,7 +158,7 @@ public class GUI_welcome extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Visita");
+        jButton3.setText("Visitar");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);

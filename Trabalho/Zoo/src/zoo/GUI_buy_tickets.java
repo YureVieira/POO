@@ -53,6 +53,7 @@ public class GUI_buy_tickets extends javax.swing.JFrame {
         horario_cb = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Agendar");
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
 
