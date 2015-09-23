@@ -5,6 +5,7 @@
  */
 package zoo;
 
+import java.awt.Frame;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -42,6 +43,8 @@ public class GUI_Work extends javax.swing.JFrame {
 
     DefaultListModel<String> model;
     DefaultListModel<String> modelFunc;
+    
+    Frame parent;
 
     /**
      * *****************************************************************************
@@ -441,8 +444,13 @@ public class GUI_Work extends javax.swing.JFrame {
         //if (GUI_welcome.usuario != null) {
 
         //}
+        this.parent = parent;
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         animals_textBoxs_setEditable(false);
+        this.jPanel8.setVisible(!GUI_welcome.isVisita);
+        this.tabs.setEnabledAt(2,GUI_welcome.isVisita);
+        if(GUI_welcome.isVisita)System.out.println("É uma visita");
+        else System.out.println("Não é uma visita");
     }
 
     /**
@@ -455,7 +463,7 @@ public class GUI_Work extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jLabel7 = new javax.swing.JLabel();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
+        tabs = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -743,7 +751,7 @@ public class GUI_Work extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane3.addTab("Animais", jPanel1);
+        tabs.addTab("Animais", jPanel1);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Funcionarios"));
 
@@ -855,7 +863,7 @@ public class GUI_Work extends javax.swing.JFrame {
                 .addContainerGap(182, Short.MAX_VALUE))
         );
 
-        jTabbedPane3.addTab("Funcionarios", jPanel2);
+        tabs.addTab("Funcionarios", jPanel2);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -868,7 +876,7 @@ public class GUI_Work extends javax.swing.JFrame {
             .addGap(0, 389, Short.MAX_VALUE)
         );
 
-        jTabbedPane3.addTab("Infra", jPanel9);
+        tabs.addTab("Infra", jPanel9);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -876,13 +884,13 @@ public class GUI_Work extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane3))
+                .addComponent(tabs))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane3))
+                .addComponent(tabs))
         );
 
         pack();
@@ -918,6 +926,7 @@ public class GUI_Work extends javax.swing.JFrame {
 //      private int ADICIONAR   = 3;
 //      private int REMOVER     = 4;
 //      private int EDITAR      = 5;
+        
         this.jButton1.setEnabled(false);
         int index = actions_comboBox.getSelectedIndex();
         
@@ -1171,12 +1180,12 @@ public class GUI_Work extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JLabel n_animais_label;
     private javax.swing.JTextField nameAnimal_textBox;
     private javax.swing.JTextField nomeFn_textBox;
     private javax.swing.JProgressBar saude_progress;
     private javax.swing.JTextField sexo_textBox;
+    private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -22,11 +22,13 @@ public class GUI_welcome extends javax.swing.JFrame {
 
     private Boolean login;
     static Funcionario usuario = null;
+    static boolean isVisita = false;
     //variaveis relativas aos horarios
     Timer timer;
     String data, hora;
     int dia;
-    Date agora = new Date();  
+    Date agora = new Date();
+
     public void setLogin(boolean e) {
         login = e;
     }
@@ -58,8 +60,14 @@ public class GUI_welcome extends javax.swing.JFrame {
 
                 cal.setTime(agora);
                 dia = cal.get(Calendar.DAY_OF_WEEK);
+                int horaInt = cal.get(Calendar.HOUR);
+                if (horaInt < 8 || horaInt >= 16) {
+                    enableButtons(false);
+                } else {
+                    enableButtons(true);
+                }
                 //System.out.println(data + ", " + hora + ", " + getDiaString());
-                _setTitle(data + ", " + hora + ", (" + getDiaString()+")");
+                _setTitle(data + ", " + hora + ", (" + getDiaString() + ")");
             }
         };
         timer = new Timer(1000, action);
@@ -68,6 +76,17 @@ public class GUI_welcome extends javax.swing.JFrame {
 
     public void _setTitle(String str) {
         this.setTitle(str);
+    }
+
+    public void enableButtons(boolean flag) {
+        this.jButton1.setEnabled(flag);
+        this.jButton2.setEnabled(flag);
+        this.jButton3.setEnabled(flag);
+        this.jButton4.setEnabled(flag);
+        this.jButton1.setVisible(flag);
+        this.jButton2.setVisible(flag);
+        this.jButton3.setVisible(flag);
+        this.jButton4.setVisible(flag);
     }
 
     public int getDia() {
@@ -139,6 +158,11 @@ public class GUI_welcome extends javax.swing.JFrame {
         });
 
         jButton3.setText("Visitante");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jButton4.setText("Agendar");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,7 +214,7 @@ public class GUI_welcome extends javax.swing.JFrame {
         System.out.println(win1.getCpf());
         System.out.println(win1.getPassword());
         System.out.println(win1.getFnc());
-
+        this.isVisita = false;
         //Faz a busca e loga se usuario existir
         int index = Background.busca_funcionario(win1.getCpf(), win1.getPassword(), win1.getFnc());
         //Segundo form
@@ -225,14 +249,34 @@ public class GUI_welcome extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-       GUI_visit_register win = new GUI_visit_register(this, true);
-       win.setVisible(true);
+        GUI_visit_register win = new GUI_visit_register(this, true);
+        win.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-       GUI_buy_tickets win = new GUI_buy_tickets();
-       win.setVisible(true);
+        GUI_buy_tickets win = new GUI_buy_tickets();
+        win.setVisible(true);
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        String id = JOptionPane.showInputDialog(this, "Entre o ID do seu ingresso");
+        Visita v = Background.buscar_visita(id);
+        int horaLocal = Integer.parseInt(hora.substring(0,2));
+        if (v != null) {
+            if (v.getData().equals(this.data)) {
+                if(horaLocal >= v.getHora() && horaLocal< v.getHora_sair()){
+                System.out.println(v.getData()+", "+data);
+                this.isVisita = true;
+                GUI_Work win = new GUI_Work();
+                win.setTitle("Visita");
+                win.setVisible(true);
+                }
+                JOptionPane.showMessageDialog(this, "Fora do horario");
+            }
+        } else {
+            System.out.println("Nenhuma visita agendada");
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments

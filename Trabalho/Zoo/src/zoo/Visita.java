@@ -1,5 +1,6 @@
 package zoo;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Visita {
@@ -31,8 +32,14 @@ public class Visita {
                 valor = visitantes.size() * 50;
             }
         }
+        
         //Gerar um ID
+        String data_ = "dd/MM/yyyy";
+        SimpleDateFormat formata = new SimpleDateFormat(data_);
+       
         Date d = new Date();
+        data = formata.format(d);
+        
         Calendar cal = new GregorianCalendar();
         long agora = d.getTime();
         

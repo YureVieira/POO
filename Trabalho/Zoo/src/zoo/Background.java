@@ -13,8 +13,8 @@ import java.util.*;
  */
 
 public class Background {
-	int hora_de_fechar = 16;
-	int hora_de_abrir = 8;
+	static int hora_de_fechar = 16;
+	static int hora_de_abrir = 8;
 	int dias_uteis;
 	//static ArrayList<Funcionario> quadroF = new ArrayList<Funcionario>();
         static ArrayList<Funcionario> quadroF = new ArrayList<Funcionario>();
@@ -58,7 +58,7 @@ public class Background {
 		return null; // N�o encontrado
 	}
         
-        public static boolean  loginF(int index){
+        public static boolean loginF(int index){
             try{
                 usuarioF = (Funcionario)quadroF.get(index);
                 System.out.println("Logado");
@@ -94,5 +94,11 @@ public class Background {
             }
                 
 	}
-
+        
+        public static Visita buscar_visita(String id){
+            for(Visita v:visitas){
+                if(v.getId().equals(id))return v;
+            }
+            return null;
+        }
 }
