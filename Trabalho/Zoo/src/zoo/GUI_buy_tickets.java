@@ -46,11 +46,11 @@ public class GUI_buy_tickets extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         data_tf = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        hora_tf = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         add_bt = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        combo_cb = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
+        horario_cb = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -86,12 +86,6 @@ public class GUI_buy_tickets extends javax.swing.JFrame {
         jLabel3.setText("Horario da visita");
         jLabel3.setToolTipText("");
 
-        try {
-            hora_tf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         jLabel4.setText("Tipo de ingresso");
 
         add_bt.setText("+");
@@ -101,7 +95,7 @@ public class GUI_buy_tickets extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dia inteiro(R$100,00)", "Metade do dia(R$50,00)", "Dia inteiro(Combo/R$200,00)", "Metade do dia(Combo/R$100,00)" }));
+        combo_cb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Combo Familia" }));
 
         jButton2.setText("Ok");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,6 +103,8 @@ public class GUI_buy_tickets extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
+
+        horario_cb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "8:00 as 12:00", "12:00 as 16:00", "8:00 as 16:00" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -124,8 +120,7 @@ public class GUI_buy_tickets extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, 233, Short.MAX_VALUE)
-                            .addComponent(hora_tf)
+                            .addComponent(combo_cb, 0, 233, Short.MAX_VALUE)
                             .addComponent(data_tf)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2)
@@ -138,7 +133,8 @@ public class GUI_buy_tickets extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(add_bt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(remove_bt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(remove_bt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(horario_cb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 12, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -148,47 +144,45 @@ public class GUI_buy_tickets extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(add_bt)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(remove_bt)))
+                        .addComponent(remove_bt)
+                        .addGap(0, 45, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(data_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hora_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(horario_cb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(combo_cb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 267, Short.MAX_VALUE)
+            .addGap(0, 287, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 307, Short.MAX_VALUE)
+            .addGap(0, 355, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         pack();
@@ -234,24 +228,25 @@ public class GUI_buy_tickets extends javax.swing.JFrame {
     }//GEN-LAST:event_add_btMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        String data, horario;
-        String _ano, _mes, _dia, _hora, _minuto;
-        int ano, mes, dia, hora, minuto;
-        int diaDaSemana ;
-
-        data = this.data_tf.getText();
+        String data;
+        int ano, mes, dia, hora, minuto, hora_sair = 12;;
+        int diaDaSemana;
+        boolean combo = false, full_time = false;
         
+        if(this.jList1.getModel().getSize()>0){
+        data = this.data_tf.getText();
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date diaUtil = sdf.parse(data);
-            GregorianCalendar gc = new GregorianCalendar();  
-            gc.setTime(diaUtil);  
-            diaDaSemana = gc.get(GregorianCalendar.DAY_OF_WEEK); 
+            GregorianCalendar gc = new GregorianCalendar();
+            gc.setTime(diaUtil);
+            diaDaSemana = gc.get(GregorianCalendar.DAY_OF_WEEK);
         } catch (ParseException ex) {
             Logger.getLogger(GUI_buy_tickets.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
-        
+
         data = data.replace("/", "");
         dia = Integer.parseInt(data.substring(0, 2));
         mes = Integer.parseInt(data.substring(2, 4));
@@ -259,31 +254,72 @@ public class GUI_buy_tickets extends javax.swing.JFrame {
 
         if (dia > 31 || mes > 12 || dia == 0 || mes == 0) {
             JOptionPane.showMessageDialog(null, "Data invalida");
+            return;
         } else if ((mes == 2 || mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia == 31) {
             JOptionPane.showMessageDialog(null, "Data invalida");
+            return;
         } else if ((ano % 4 == 0) && mes == 2 && dia > 29) {
             JOptionPane.showMessageDialog(null, "Data invalida(Ano bissexto)");
+            return;
         } else if ((ano % 4 != 0) && mes == 2 && dia > 28) {
             JOptionPane.showMessageDialog(null, "Data invalida(Ano não bissexto)");
-        }
-        else if(diaDaSemana == 1){
+            return;
+        } else if (diaDaSemana == 1) {
             JOptionPane.showMessageDialog(null, "O zoologico é fechado aos domingos");
+            return;
         }
 
-        horario = this.hora_tf.getText();
-        horario = horario.replace("/", "");
-        hora = Integer.parseInt(horario.substring(0, 2));
-        minuto = Integer.parseInt(horario.substring(2, 4));
-        if (hora > 23 || minuto > 59) {
-            JOptionPane.showMessageDialog(null, "Horario invalido");
-        } else if (hora >= 16 && hora < 8) {
-            JOptionPane.showMessageDialog(null, "Zoologico estara fechado neste horario");
+        int index = this.horario_cb.getSelectedIndex();
+
+        if (index == 0) {
+            hora = 8;
+            hora_sair = 12;
+        } else if (index == 1) {
+            hora = 12;
+            hora_sair = 16;
+        } else {
+            hora = 8;
+            hora_sair = 16;
         }
-        Background.visitas.add(visita);
+        if (this.combo_cb.getModel().getSelectedItem().equals("Normal")) {
+            if (hora_sair - hora == 4) {
+                combo = false;
+                full_time = false;
+            } else {
+                combo = false;
+                full_time = true;
+            }
+        }
+        if(this.combo_cb.getModel().getSelectedItem().equals("Combo Familia")){
+            if(this.jList1.getModel().getSize() < 3){
+                JOptionPane.showMessageDialog(null, "Combo familia somente para grupos de 3 pessoas");
+                return;
+            }
+            if (hora_sair - hora == 4) {
+                combo = true;
+                full_time = false;
+            } else {
+                combo = true;
+                full_time = true;
+            }
+        }
+
+        visita.setAno(ano);
+        visita.setMes(mes);
+        visita.setDia(dia);
+        visita.setHora(hora);
+        visita.setHora_sair(hora_sair);
+        String ID = visita.compute(combo, full_time);
+        if(JOptionPane.showConfirmDialog(this,"Ingresso para " + this.jList1.getModel().getSize()+
+                " pessoas lhe custara R$" + visita.getValor(),"Deseja pagar por isso?",2)==0){
+            Background.visitas.add(visita);
+            JOptionPane.showInputDialog(this, "Guarde seu id para fazer a visita futuramente", ID);
+        }
+        }
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
-        if(this.jList1.getModel().getSize() == 3){
+        if (this.jList1.getModel().getSize() == 3) {
             //JOptionPane.showMessageDialog(null, "Voce pode optar pelos combos");
         }
     }//GEN-LAST:event_jList1ValueChanged
@@ -326,10 +362,10 @@ public class GUI_buy_tickets extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_bt;
+    private javax.swing.JComboBox combo_cb;
     private javax.swing.JFormattedTextField data_tf;
-    private javax.swing.JFormattedTextField hora_tf;
+    private javax.swing.JComboBox horario_cb;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
